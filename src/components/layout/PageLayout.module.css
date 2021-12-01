@@ -1,0 +1,22 @@
+.authBlock {
+  display: none;
+}
+
+.authWrapper {
+  padding-top: 20px;
+  background-color: #E5E5E5;
+  position: relative;
+}
+
+.authOverlay {
+  z-index: 99;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+@media(min-width: 768px) {
+  .authBlock {
+    display: block;
+  }
+}

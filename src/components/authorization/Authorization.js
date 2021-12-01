@@ -1,9 +1,11 @@
 import React from "react";
-import {Form, Control, Button} from 'react-bootstrap'
-import styles from './Authorization.module.css'
-const Authorization = () => {
+import { Form, Button } from "react-bootstrap";
+import styles from "./Authorization.module.css";
+
+const Authorization = ({ title }) => {
   return (
     <div className={styles.authWrapper}>
+      {title && <h1 className="logoTitle">{title}</h1>}
       <h2 className={styles.authTitle}> Authorization</h2>
       <Form>
         <Form.Control
