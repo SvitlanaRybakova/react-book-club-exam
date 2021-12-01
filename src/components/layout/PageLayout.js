@@ -9,7 +9,7 @@ const PageLayout = ({ children }) => {
   const { isMenuOpen } = useContext(NavbarContext);
   return (
     <div className={styles.authWrapper}>
-      <Container>
+      <Container fluid>
         <Row>
           <Col sm={12} md={8}>
             this is should be movie cards {children}

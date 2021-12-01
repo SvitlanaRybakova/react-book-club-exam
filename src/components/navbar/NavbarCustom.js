@@ -10,7 +10,7 @@ const NavbarCustom = () => {
 
   return (
     <div style={{ backgroundColor: "#FA8C16" }}>
-      <Container className={styles.navbarContainer}>
+      <Container fluid className={styles.navbarContainer}>
         <h1 className={styles.logo}>Book Club</h1>
         <div className={styles.searchWrapper}>
           <form>

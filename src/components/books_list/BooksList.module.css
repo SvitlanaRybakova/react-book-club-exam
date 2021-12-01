@@ -1,0 +1,39 @@
+.booksListWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  border: 1px solid red;
+}
+
+.cardWrapper {
+  width: 10rem;
+  text-align: center;
+}
+
+.cardTitle {
+  font-weight: bold;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  word-break: break-all;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.cardTitle:hover {
+  overflow: visible;
+  white-space: normal;
+}
+
+.cardBtn {
+  background-color: #FA8C16;
+  font-size: 0.7rem;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  margin-top: 10px;
+}
+
+.cardBtn:hover {
+  background-color: #a35b0d;
+}
