@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { useQuery } from "react-query";
 import BooksList from '../../components/books_list/BooksList';
+import SearchBar from '../../components/search_bar/SearchBar'
 import PageLayout from '../../components/layout/PageLayout'
 import {getBooks} from '../../services/GoogleBooksAPI'
 
@@ -12,6 +13,7 @@ const Home = () => {
   console.log(data);
   return (
     <PageLayout>
+      <SearchBar />
       <BooksList data={data} />
     </PageLayout>
   );

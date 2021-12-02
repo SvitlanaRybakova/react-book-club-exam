@@ -3,6 +3,7 @@ import BookCard from './BookCard'
 import styles from './BooksList.module.css'
 
 const BooksList = ({data}) => {
+  console.log(data);
   return (
     <div className={styles.booksListWrapper}>
       {data?.items.map((book) => (
@@ -10,6 +11,7 @@ const BooksList = ({data}) => {
           key={book.id}
           image={book.volumeInfo.imageLinks?.smallThumbnail}
           title={book.volumeInfo.title}
+          id={book.id}
         />
       ))}
     </div>

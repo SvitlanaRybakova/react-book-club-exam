@@ -3,12 +3,12 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
-  border: 1px solid red;
 }
 
 .cardWrapper {
   width: 10rem;
   text-align: center;
+  margin-bottom: 10px;
 }
 
 .cardTitle {
@@ -18,6 +18,7 @@
   word-break: break-all;
   overflow: hidden;
   white-space: nowrap;
+  padding: 10px;
 }
 
 .cardTitle:hover {
@@ -25,6 +26,9 @@
   white-space: normal;
 }
 
+.cardImage {
+height: 170px;
+}
 .cardBtn {
   background-color: #FA8C16;
   font-size: 0.7rem;
