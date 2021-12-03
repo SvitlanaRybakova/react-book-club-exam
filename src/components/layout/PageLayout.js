@@ -12,7 +12,7 @@ const PageLayout = ({ children }) => {
       <Container fluid>
         <Row>
           <Col sm={12} md={8}>
-            this is should be movie cards {children}
+           {children}
           </Col>
           <Col className={styles.authBlock}>
             <Authorization />
