@@ -1,5 +1,5 @@
 .bookInfoWrappwer {
-  background-color: #ffffff;
+  background-color: var(--vite);
   padding: 30px;
 }
 
@@ -11,7 +11,7 @@
 .bookAuthor {
   font-style: italic;
   font-weight: 24px;
-  color: #565555;
+  color:var(--gray);
 }
 
 .imgWrapper {
@@ -20,18 +20,18 @@
 }
 
 .descriptionButton {
-  background-color: #FA8C16;
+  background-color: var(--orange);
   font-style: italic;
   border: none;
   border-radius: 5px;
-  color: #ffffff;
+  color:var(--vite);
   margin-top: 10px;
   padding: 5px 10px;
 }
 
 .extraDescrWrapper {
-  background-color: #fff;
-  color: #565555;
+  background-color: var(--vite);
+  color: var(--gray);
   font-size: 1rem;
    margin: 20px 0px;
   padding: 20px 0px;
@@ -43,7 +43,7 @@
 
 .extraDescrIcon {
   margin: 10px auto;
-  color: #565555;
+  color: var(--gray);
 
 }
 

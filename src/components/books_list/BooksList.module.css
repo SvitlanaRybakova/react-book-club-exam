@@ -30,14 +30,10 @@
 height: 170px;
 }
 .cardBtn {
-  background-color: #FA8C16;
+  background-color: var(--orange);
   font-size: 0.7rem;
   border: none;
   border-radius: 5px;
-  color: #ffffff;
+  color: var(--vite);
   margin-top: 10px;
-}
-
-.cardBtn:hover {
-  background-color: #a35b0d;
 }

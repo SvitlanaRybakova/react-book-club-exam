@@ -1,19 +1,19 @@
 .authWrapper {
-  background-color: #fff;
+  background-color: var(--vite);
   padding: 30px 20px;
   text-align: center;
 }
 
 .authTitle {
   font-size: 20px;
-  color: black;
+  color:var (--black);
   font-weight: bold;
   margin-bottom: 30px;
 }
 
 .authInput {
-  border: 1px solid #C4C4C4;
-  color: #565555;
+  border: 1px solid var(--grayBorder);
+  color: var(--gray);
   font-size: 0.8rem !important;
   border-radius: 5px;
   margin-bottom: 5px;
@@ -23,12 +23,12 @@
   margin-top: 30px;
   font-size: 0.9rem;
   font-style: italic;
-  color: #565555;
+  color: var(--gray);
 }
 
 .loginBtn {
-  background-color: #FA8C16 !important;
-  color: #fff;
+  background-color: var(--orange) !important;
+  color: var(--vite);
   width: 100%;
   border: none !important;
   margin-bottom: 10px;
@@ -37,7 +37,7 @@
 .signupBtn {
   background-color: transparent !important;
   border: none !important;
-  color: #FA8C16 !important;
+  color: var(--orange) !important;
   width: 100%;
 }
 

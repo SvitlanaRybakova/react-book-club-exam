@@ -67,12 +67,25 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 /*
-  9. Create a root stacking context
+  9. Colors
+*/
+
+:root {
+  --orange: #FA8C16;
+  --vite: #ffffff;
+  --gray: #565555;
+  --grayPlaceholder: #858080;
+  --black: #000000;
+  --grayBorder: #C4C4C4;
+}
+
+/*
+  10. Create a root stacking context
 */
 
 .logoTitle {
   font-weight: bold;
-  color: #FA8C16;
+  color: var(--orange);
   margin-top: 0px;
   margin-bottom: 30px;
 }
