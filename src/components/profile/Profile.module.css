@@ -29,16 +29,10 @@
   margin-top: 20px;
 }
 
-.userLogo {
-  width: 50px;
+
+
+
+.icons{
+  cursor: pointer;
   margin-right: 10px;
-}
-
-.userLogo>img {
-  border: 1px solid var(--gray);
-  border-radius: 50%;
-}
-
-.username{
-  font-weight: bold;
 }

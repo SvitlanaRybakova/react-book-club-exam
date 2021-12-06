@@ -11,16 +11,16 @@ const Profile = ({ title }) => {
       {title && <h1 className="logoTitle">{title}</h1>}
       <Row className="justify-content-between">
         <Col className="d-flex align-items-center">
-          <div className={styles.userLogo}>
+          <div className="userLogo">
             <img src={userLogo} alt="user logo" />
           </div>
-          <span className={styles.username}>Svitlana</span>
+          <span className="username">Svitlana</span>
         </Col>
         <Col className="d-flex align-items-center justify-content-end ">
-          <div className="mx-2">
+          <div className={styles.icons}>
             <BiEdit size={25} />
           </div>
-          <div>
+          <div className={styles.icons}>
             <IoLogOutOutline size={25} />
           </div>
         </Col>

@@ -6,6 +6,8 @@ import { getBook } from "../../services/GoogleBooksAPI";
 import PageLayout from "../../components/layout/PageLayout";
 import BookDescription from "./BookDescription";
 import BookExtraDescription from './BookExtraDescription';
+import CreateComment from '../../components/create_comment/CreateComment'
+import Comment from '../../components/posted_comment/Comment'
 import styles from "./BookPage.module.css";
 
 const BookPage = () => {
@@ -30,6 +32,8 @@ const BookPage = () => {
         />
       </PageLayout>
      <BookExtraDescription bookInfo={bookInfo}/>
+     <CreateComment />
+     <Comment />
      </>
     )
     }

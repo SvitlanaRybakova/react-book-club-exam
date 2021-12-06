@@ -89,3 +89,17 @@ p, h1, h2, h3, h4, h5, h6 {
   margin-top: 0px;
   margin-bottom: 30px;
 }
+
+.userLogo {
+  width: 65px;
+  margin-right: 10px;
+}
+
+.userLogo>img {
+  border: 1px solid var(--gray);
+  border-radius: 50%;
+}
+
+.username {
+  font-weight: bold;
+}

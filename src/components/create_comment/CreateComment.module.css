@@ -1,0 +1,20 @@
+.commentWrapper {
+  padding: 0px 12px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.commentInput {
+  border: none;
+  width: 90%;
+  padding: 8px;
+}
+
+.postBtn {
+  margin-left: 20px;
+  background-color: var(--orange);
+  border: none;
+  flex: 0 0 15%
+}
