@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Authorization from "../authorization/Authorization";
-
+import Profile from '../profile/Profile'
 import { NavbarContext } from "../../contexts/NavbarContext";
 import styles from "./PageLayout.module.css";
 
@@ -16,10 +16,13 @@ const PageLayout = ({ children }) => {
           </Col>
           <Col className={styles.authBlock}>
             <Authorization />
+            <Profile />
           </Col>
           {isMenuOpen && (
             <div className={styles.authOverlay}>
               <Authorization title={"Book Club"} />
+              <Profile title={"Book Club"} />
+
             </div>
           )}
         </Row>

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import Image from "../../components/image/Image";
 import styles from "./BookPage.module.css";
+import {AMMOUNT_OF_SYMBOLS} from '../../services/const'
+
 
 const BookDescription = ({ bookInfo }) => {
   const [isFullDesc, setFullDesc] = useState(false);
@@ -42,14 +44,14 @@ const BookDescription = ({ bookInfo }) => {
                 ) : (
                   <div
                     dangerouslySetInnerHTML={{
-                      __html: bookInfo.description.slice(0, 400),
+                      __html: bookInfo.description.slice(0, AMMOUNT_OF_SYMBOLS),
                     }}
                   />
                 )}
-                {bookInfo.description.length > 400 && (
+                {bookInfo.description.length > AMMOUNT_OF_SYMBOLS && (
                   <button
                     className={styles.descriptionButton}
-                    onClick={()=> setFullDesc((prevState) => !prevState)}
+                    onClick={() => setFullDesc((prevState) => !prevState)}
                   >
                     {isFullDesc ? "hide info" : "read more"}
                   </button>

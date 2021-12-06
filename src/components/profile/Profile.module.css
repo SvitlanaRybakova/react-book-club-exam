@@ -1,0 +1,44 @@
+.profileWrapper {
+  margin-top: 20px;
+  background-color: var(--vite);
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.profileTitle {
+  font-size: 20px;
+  color: var(--orange);
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.profileInput {
+  border: 1px solid var(--grayBorder);
+  color: var(--gray);
+  font-size: 0.8rem !important;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.saveBtn {
+  background-color: var(--orange) !important;
+  color: var(--vite);
+  width: 100%;
+  border: none !important;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.userLogo {
+  width: 50px;
+  margin-right: 10px;
+}
+
+.userLogo>img {
+  border: 1px solid var(--gray);
+  border-radius: 50%;
+}
+
+.username{
+  font-weight: bold;
+}
