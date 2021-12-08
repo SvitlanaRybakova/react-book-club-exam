@@ -1,23 +1,37 @@
-import React from 'react'
-import { BsSearch } from "react-icons/bs";
-import styles from './SearchBar.module.css'
+import React, { useState } from "react";
+import { Row, Col, Form, ButtonGroup, ToggleButton } from "react-bootstrap";
+import GenreOptions from "./GenreOptions";
+import SearchInput from "./SearchInput";
+import LangvOptions from "./LangOptions";
+import PopularOption from "./PopularOption";
+
+import styles from "./SearchBar.module.css";
 
 const SearchBar = () => {
+  // for search bar input title+author
+  const [value, setValue] = useState("");
+  // radio btn = language
+  const [radioValue, setRadioValue] = useState("en");
+// genre options
+  const [input, setInput] = useState("");
+// popular option
+  const [checked, setChecked] = useState(false);
+  console.log("language", radioValue);
   return (
-    <div className={styles.searchWrapper}>
-      <form className={styles.searchForm}>
-        <input
-          className={styles.searchInput}
-          type="text"
-          name="search"
-          placeholder="Search.."
-        />
-      </form>
-      <button className={styles.searchButton}>
-        <BsSearch color={"#FA8C16"} />
-      </button>
-    </div>
-  );
-}
+    <>
+      <SearchInput />
 
-export default SearchBar
+      <form>
+        <Row className="align-items-baseline">
+          <LangvOptions setRadioValue={setRadioValue} />
+
+          <GenreOptions input={input} setInput={setInput} />
+
+          <PopularOption checked={checked} setChecked={setChecked} />
+        </Row>
+      </form>
+    </>
+  );
+};
+
+export default SearchBar;

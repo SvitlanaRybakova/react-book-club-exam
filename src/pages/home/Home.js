@@ -6,7 +6,7 @@ import PageLayout from '../../components/layout/PageLayout'
 import {getBooks} from '../../services/GoogleBooksAPI'
 
 const Home = () => {
-  const [query, setQuery] = useState("harry")
+  const [query, setQuery] = useState("harry+potter")
   const { data, error, isError, isLoading } = useQuery(["home", query], () =>
     getBooks(query)
   );

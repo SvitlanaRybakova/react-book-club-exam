@@ -1,5 +1,5 @@
 .bookInfoWrappwer {
-  background-color: var(--vite);
+  background-color: var(--white);
   padding: 30px;
 }
 
@@ -24,13 +24,13 @@
   font-style: italic;
   border: none;
   border-radius: 5px;
-  color:var(--vite);
+  color:var(--white);
   margin-top: 10px;
   padding: 5px 10px;
 }
 
 .extraDescrWrapper {
-  background-color: var(--vite);
+  background-color: var(--white);
   color: var(--gray);
   font-size: 1rem;
    margin: 20px 12px;

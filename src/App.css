@@ -72,11 +72,12 @@ p, h1, h2, h3, h4, h5, h6 {
 
 :root {
   --orange: #FA8C16;
-  --vite: #ffffff;
+  --white: #ffffff;
   --gray: #565555;
   --grayPlaceholder: #858080;
   --black: #000000;
   --grayBorder: #C4C4C4;
+  --bg: #E5E5E5;
 }
 
 /*

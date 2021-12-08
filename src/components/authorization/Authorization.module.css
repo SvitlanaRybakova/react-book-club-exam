@@ -1,5 +1,5 @@
 .authWrapper {
-  background-color: var(--vite);
+  background-color: var(--white);
   padding: 30px 20px;
   text-align: center;
 }
@@ -28,7 +28,7 @@
 
 .loginBtn {
   background-color: var(--orange) !important;
-  color: var(--vite);
+  color: var(--white);
   width: 100%;
   border: none !important;
   margin-bottom: 10px;

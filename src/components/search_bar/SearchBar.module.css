@@ -19,9 +19,237 @@
 }
 
 .searchButton {
-  background-color: var(--vite);
+  background-color: var(--white);
   border-radius: 5px;
   border: none;
   margin-left: 8px;
   padding: 8px 10px;
+}
+
+/************ Language options ***********/
+
+.radioBtn {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.radioOption {
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+/* The container */
+
+.container {
+  display: block;
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+
+.container:hover input~.checkmark {
+  background-color: var(--white);
+}
+
+/* When the radio button is checked, add a blue background */
+
+.container input:checked~.checkmark {
+  background-color: var(--orange);
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+
+.container input:checked~.checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+
+.container .checkmark:after {
+  top: 6px;
+  left: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--white);
+}
+
+/*********** Genre options (autocomplete) *********/
+
+.autoCompleteInput {
+  border-radius: 5px;
+  border: none;
+  color: var(--grayPlaceholder);
+  font-size: 0.8em;
+  font-weight: normal;
+  padding: 8px;
+  width: 100%;
+}
+
+.nosuggestions {
+  color: var(--gray);
+  padding: 0.5rem;
+}
+
+.suggestions {
+  border: 1px solid var(--grayPlaceholder);
+  background-color: var(--white);
+  border-top-width: 0;
+  list-style: none;
+  margin-top: 0;
+  max-height: 143px;
+  overflow-y: auto;
+  padding-left: 0;
+  width: 250px;
+}
+
+.suggestions li {
+  padding: 0.5rem;
+}
+
+.suggestion-active, .suggestions li:hover {
+  background-color: var(--bg);
+  color: var(--orange);
+  cursor: pointer;
+}
+
+.suggestions li:not(:last-of-type) {
+  border-bottom: 1px solid #999;
+}
+
+.optionsWrapper {
+  position: relative;
+  width: 250px;
+}
+
+.cross {
+  position: absolute;
+  top: 9px;
+  right: 3px;
+  cursor: pointer;
+  height: 17px;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #9e9e9e7e;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #f3f6f7;
+  border-radius: 3px;
+}
+
+/********* Checkbox popular **********/
+
+.containerCheckbox {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+
+.containerCheckbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+
+.checkmarkCheckbox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+
+.containerCheckbox:hover input~.checkmarkCheckbox {
+  background-color: var(--white);
+}
+
+/* When the checkbox is checked, add a blue background */
+
+.containerCheckbox input:checked~.checkmarkCheckbox {
+  background-color: var(--orange);
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+
+.checkmarkCheckbox:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+
+.containerCheckbox input:checked~.checkmarkCheckbox:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+
+.containerCheckbox .checkmarkCheckbox:after {
+  left: 9px;
+  top: 4px;
+  width: 7px;
+  height: 12px;
+  border: solid var(--white);
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }

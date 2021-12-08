@@ -3,6 +3,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
+  margin-top: 40px;
 }
 
 .cardWrapper {
@@ -34,6 +35,6 @@ height: 170px;
   font-size: 0.7rem;
   border: none;
   border-radius: 5px;
-  color: var(--vite);
+  color: var(--white);
   margin-top: 10px;
 }
