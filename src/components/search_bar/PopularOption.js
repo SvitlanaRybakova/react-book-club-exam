@@ -8,10 +8,10 @@ const PopularOption = ({ checked, setChecked }) => {
   };
   return (
     <Col sm={3} className="py-3">
-      <label class={styles.containerCheckbox}>
+      <label className={styles.containerCheckbox}>
         <input type="checkbox" checked={checked} onChange={handleChange} />
         Popular
-        <span class={styles.checkmarkCheckbox}></span>
+        <span className={styles.checkmarkCheckbox}></span>
       </label>
     </Col>
   );

@@ -1,8 +1,8 @@
-import React from 'react'
+import React from "react";
 import { BsSearch } from "react-icons/bs";
 import styles from "./SearchBar.module.css";
 
-const SearchInput = () => {
+const SearchInput = ({ searchText, setSearchText }) => {
   return (
     <div className={styles.searchWrapper}>
       <form className={styles.searchForm}>
@@ -11,6 +11,9 @@ const SearchInput = () => {
           type="text"
           name="search"
           placeholder="Search.."
+          value={searchText}
+          onChange={(e) => {setSearchText(e.target.value);
+          }}
         />
       </form>
       <button className={styles.searchButton}>
@@ -18,6 +21,6 @@ const SearchInput = () => {
       </button>
     </div>
   );
-}
+};
 
-export default SearchInput
+export default SearchInput;

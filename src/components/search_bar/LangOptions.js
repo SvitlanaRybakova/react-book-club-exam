@@ -1,23 +1,24 @@
-import React from 'react'
-import {Col} from 'react-bootstrap'
+import React from "react";
+import { Col } from "react-bootstrap";
+import { v4 as uuidv4 } from "uuid";
 import styles from "./SearchBar.module.css";
 
-const LangOptions = ({ setRadioValue }) => {
+const LangOptions = ({ radioValue, setRadioValue }) => {
+  console.log(radioValue === 'en');
   return (
     <Col sm={3} className={styles.radioBtn}>
       {["en", "sv"].map((lang, index) => (
-        <div className={styles.radioOption}>
+        <div className={styles.radioOption} key={uuidv4()}>
           <label className={styles.container} htmlFor={lang}>
             {lang}
             <input
-              key={index}
               type="radio"
               name="language"
-              id={lang}
+              id={index}
               value={lang}
-              onChange={(e) => setRadioValue(e.target.value)}
+              onChange={(e) => setRadioValue(e.currentTarget.value)}
             />
-            <span class={styles.checkmark}></span>
+            <span className={styles.checkmark}></span>
           </label>
         </div>
       ))}
@@ -25,4 +26,4 @@ const LangOptions = ({ setRadioValue }) => {
   );
 };
 
-export default LangOptions
+export default LangOptions;
