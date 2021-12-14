@@ -18,7 +18,9 @@
 .menuBar{
   background-color: transparent;
   border: none;
+  cursor: pointer;
 }
+
 
 @media(min-width: 768px){
   .menuBar{

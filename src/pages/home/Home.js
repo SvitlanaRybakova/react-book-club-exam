@@ -7,10 +7,10 @@ import PageLayout from "../../components/layout/PageLayout";
 import CustomErrorMessage from "../../components/error_msg/CustomErrorMessage";
 import Loader from '../../components/loader/Loader'
 import { getBooks } from "../../services/GoogleBooksAPI";
-import { useNavbarContext } from "../../contexts/NavbarContext";
+import { useSearchContext } from "../../contexts/SearchContext";
 
 const Home = () => {
-  const { query } = useNavbarContext();
+  const { query } = useSearchContext();
 
   const { data, error, isError, isLoading } = useQuery(["home", query], () =>
     getBooks(query)

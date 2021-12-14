@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import styles from "./SearchBar.module.css";
 import cross from "../../assets/images/cross.png";
-import {useNavbarContext} from '../../contexts/NavbarContext'
+import { useSearchContext } from "../../contexts/SearchContext";
 
-const SearchInput = ({ }) => {
+const SearchInput = () => {
   const [input, setInput] = useState("");
 
-  const {setQuery} = useNavbarContext()
-  const handleClick = () => {
+  const { setQuery } = useSearchContext();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+   
     setQuery((prevState) => ({
       ...prevState,
       searchText: input,
@@ -16,25 +19,28 @@ const SearchInput = ({ }) => {
   };
   return (
     <div className={styles.searchWrapper}>
-      <form className={styles.searchForm}>
-          <input
-            className={styles.searchInput}
-            type="text"
-            name="search"
-            placeholder="Search.."
-            value={input}
-            onChange={(e) => {
-              setInput(e.target.value);
-            }}
-          />
-          <img
-            src={cross}
-            alt="clear input"
-            className={styles.cross}
-            onClick={() => setInput("")}
-          />
+      <form className={styles.searchForm} onSubmit={(e) => handleSubmit(e)}>
+        <input
+          className={styles.searchInput}
+          type="text"
+          name="search"
+          placeholder="Search.."
+          value={input}
+          onChange={(e) => {
+            setInput(e.target.value);
+          }}
+        />
+        <img
+          src={cross}
+          alt="clear input"
+          className={styles.cross}
+          onClick={() => setInput("")}
+        />
       </form>
-      <button className={styles.searchButton} onClick={handleClick}>
+      <button
+        type="submit"
+        className={styles.searchButton}
+      >
         <BsSearch color={"#FA8C16"} />
       </button>
     </div>

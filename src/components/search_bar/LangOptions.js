@@ -1,11 +1,11 @@
 import React from "react";
 import { Col } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
-import { useNavbarContext } from "../../contexts/NavbarContext";
+import { useSearchContext } from "../../contexts/SearchContext";
 import styles from "./SearchBar.module.css";
 
 const LangOptions = () => {
-  const {query, setQuery} = useNavbarContext()
+  const { query, setQuery } = useSearchContext();
   return (
     <Col sm={3} className={styles.radioBtn}>
       <div className={styles.radioOption}>

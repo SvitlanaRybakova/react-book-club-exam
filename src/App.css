@@ -113,3 +113,13 @@ input:focus {
   border-color: var(--orange) !important;
   box-shadow: none !important;
 }
+
+button:hover {
+  background-color: #ffc107 !important;
+  border-color: none !important;
+}
+
+button:focus {
+  border-color: none !important;
+  box-shadow: none !important;
+}

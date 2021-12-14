@@ -3,7 +3,7 @@ import axios from "axios";
 axios.defaults.baseURL = "https://www.googleapis.com/books/v1/";
 //www.googleapis.com/books/v1/volumes?q=Harry&subject:comedy+romance+fiction&printType=books&maxResults=40
 export const getBooks = async (query) => {
-  console.log(query);
+  console.log("Query", query);
 
   try {
     if (query.genre && query.searchText) {

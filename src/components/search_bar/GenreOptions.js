@@ -3,7 +3,7 @@ import { Col } from "react-bootstrap";
 import styles from "./SearchBar.module.css";
 import { suggestions } from "../../services/const";
 import cross from '../../assets/images/cross.png'
-import { useNavbarContext } from "../../contexts/NavbarContext";
+import { useSearchContext } from "../../contexts/SearchContext";
 
 const SuggestionsListComponent = ({
   onClick,
@@ -32,8 +32,8 @@ const SuggestionsListComponent = ({
   );
 };
 
-const GenreOptions = ({ }) => {
-  const {setQuery} = useNavbarContext();
+const GenreOptions = () => {
+  const { setQuery } = useSearchContext();
   const [input, setInput] = useState("");
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(0);
