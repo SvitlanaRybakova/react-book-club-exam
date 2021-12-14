@@ -15,7 +15,7 @@ export const getBooks = async (query) => {
 
     if (query.searchText && !query.genre) {
       const result = await axios.get(
-        `volumes?q=${query.searchText}&orderBy=newest&maxResults=40&langRestrict=${query.lang}`
+        `volumes?q=intitle:${query.searchText}&inauthor:${query.searchText}&orderBy=newest&maxResults=40&langRestrict=${query.lang}`
       );
       return result.data;
     }

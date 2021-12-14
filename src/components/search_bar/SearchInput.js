@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { BsSearch } from "react-icons/bs";
 import styles from "./SearchBar.module.css";
 import cross from "../../assets/images/cross.png";
 import { useSearchContext } from "../../contexts/SearchContext";
@@ -11,10 +10,10 @@ const SearchInput = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-   
+    const preparedQuery = input.trim().toLocaleLowerCase().split(' ').join('+')
     setQuery((prevState) => ({
       ...prevState,
-      searchText: input,
+      searchText: preparedQuery,
     }));
   };
   return (
@@ -37,12 +36,6 @@ const SearchInput = () => {
           onClick={() => setInput("")}
         />
       </form>
-      <button
-        type="submit"
-        className={styles.searchButton}
-      >
-        <BsSearch color={"#FA8C16"} />
-      </button>
     </div>
   );
 };
