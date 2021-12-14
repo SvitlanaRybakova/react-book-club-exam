@@ -23,17 +23,18 @@ const SearchContextProvider = ({ children }) => {
     const text = event.target.value;
 
     if (text) {
-      setSearchParams({ text: event.target.value });
+      setSearchParams({ text: text });
     } else {
       setSearchParams({});
     }
+    
 
-    // update query for sending to API
-    const preparedQuery = searchTerm
-      .trim()
-      .toLocaleLowerCase()
-      .split(" ")
-      .join("+");
+      // update query for sending to API
+      const preparedQuery = searchTerm
+        .trim()
+        .toLocaleLowerCase()
+        .split(" ")
+        .join("+");
     setQuery((prevState) => ({
       ...prevState,
       searchText: preparedQuery,

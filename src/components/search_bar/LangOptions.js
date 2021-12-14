@@ -1,6 +1,5 @@
 import React from "react";
 import { Col } from "react-bootstrap";
-import { v4 as uuidv4 } from "uuid";
 import { useSearchContext } from "../../contexts/SearchContext";
 import styles from "./SearchBar.module.css";
 
@@ -30,7 +29,6 @@ const LangOptions = () => {
           <input
             type="radio"
             name="language"
-            // id={index}
             value="sv"
             checked={query.lang === 'sv'? true: false}
             onChange={(e) =>

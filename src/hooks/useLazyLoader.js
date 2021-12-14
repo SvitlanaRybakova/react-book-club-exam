@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const LazyLoader = (length) => {
 	const [limit, setLimit] = useState(6);

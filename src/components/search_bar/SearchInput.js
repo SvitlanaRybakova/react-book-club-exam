@@ -1,26 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./SearchBar.module.css";
 import cross from "../../assets/images/cross.png";
 import { useSearchContext } from "../../contexts/SearchContext";
 
 
 const SearchInput = () => {
-  
-
-  
-
   const {
     searchTerm,
     handleSearch,
     setSearchParams,
   } = useSearchContext();
 
-  
-
-  
   return (
     <div className={styles.searchWrapper}>
-      <form className={styles.searchForm}>
+      <form className={styles.searchForm} onSubmit={(e) => e.preventDefault()}>
         <input
           className={styles.searchInput}
           type="text"

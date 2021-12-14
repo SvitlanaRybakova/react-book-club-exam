@@ -26,8 +26,6 @@ const Home = () => {
     }));
   }, [searchTerm]);
 
-  console.log(data);
-  // console.log("query", query);
   return (
     <PageLayout>
       <SearchBar />

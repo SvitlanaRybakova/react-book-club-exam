@@ -39,8 +39,6 @@ const GenreOptions = () => {
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(0);
   const [showSuggestions, setShowSuggestions] = useState(false);
   
-
-  // console.log("Input", input);
   const onChange = (e) => {
     const userInput = e.target.value;
 

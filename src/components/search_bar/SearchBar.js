@@ -1,14 +1,11 @@
-import React, { useState } from "react";
-import { Row, Col, Form, ButtonGroup, ToggleButton } from "react-bootstrap";
+import React from "react";
+import { Row } from "react-bootstrap";
 import GenreOptions from "./GenreOptions";
 import SearchInput from "./SearchInput";
 import LangvOptions from "./LangOptions";
 import PopularOption from "./PopularOption";
 
-import styles from "./SearchBar.module.css";
-
-const SearchBar = ({}) => {
-  
+const SearchBar = () => {
   return (
     <>
       <SearchInput  />
