@@ -11,7 +11,8 @@ const BookCard = ({id, image, title }) => {
   return (
     <Card className={styles.cardWrapper}>
       <Card.Title className={styles.cardTitle}>{title}</Card.Title>
-      <Card.Body>
+      <span className={styles.tooltiptext}>{title}</span>
+      <Card.Body className="pt-0">
         <div className={styles.cardImage}>
           <Image imageSrc={image} imageTitle={title} />
         </div>

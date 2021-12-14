@@ -10,22 +10,61 @@
   width: 10rem;
   text-align: center;
   margin-bottom: 10px;
+  position: relative;
+  /* display: inline-block; */
 }
 
 .cardTitle {
   font-weight: bold;
-  text-overflow: ellipsis;
   cursor: pointer;
+  text-overflow: ellipsis;
   word-break: break-all;
   overflow: hidden;
   white-space: nowrap;
   padding: 10px;
+  font-size: 1rem;
+  margin-bottom: 0 !important;
 }
 
-.cardTitle:hover {
+.cardWrapper .tooltiptext {
+  visibility: hidden;
+  width: 150px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 3px;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 40%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 0.8rem;
+}
+
+.cardWrapper .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.cardWrapper:hover .tooltiptext {
+  visibility: visible;
+  /* overflow: auto; */
+  opacity: 1;
+}
+
+/* .cardTitle:hover {
   overflow: visible;
   white-space: normal;
-}
+} */
 
 .cardImage {
   height: 170px;
@@ -59,5 +98,5 @@
 }
 
 .loadMore_btn:hover {
-  background-color: var(--white)  !important;
+  background-color: var(--white) !important;
 }
