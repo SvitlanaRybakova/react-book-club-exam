@@ -11,10 +11,11 @@ import { useSearchContext } from "../../contexts/SearchContext";
 
 const Home = () => {
   const { query } = useSearchContext();
-
+  
   const { data, error, isError, isLoading } = useQuery(["home", query], () =>
-    getBooks(query)
+  getBooks(query)
   );
+ 
   console.log(data);
   // console.log("query", query);
   return (

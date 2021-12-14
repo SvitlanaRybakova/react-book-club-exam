@@ -28,8 +28,9 @@
 }
 
 .cardImage {
-height: 170px;
+  height: 170px;
 }
+
 .cardBtn {
   background-color: var(--orange);
   font-size: 0.7rem;
@@ -37,4 +38,26 @@ height: 170px;
   border-radius: 5px;
   color: var(--white);
   margin-top: 10px;
+}
+
+/* button 'load more' */
+
+.delete {
+  display: none;
+}
+
+.loadMore_btn {
+  color: var(--orange);
+  width: 100%;
+  border: 1px solid var(--orange);
+  margin-bottom: 10px;
+  margin-top: 20px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  padding: 5px 15px;
+  font-size: 0.8rem;
+}
+
+.loadMore_btn:hover {
+  background-color: var(--white)  !important;
 }
