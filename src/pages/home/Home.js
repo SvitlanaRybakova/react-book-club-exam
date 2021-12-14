@@ -1,19 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { useQuery } from "react-query";
 import { useSearchContext } from "../../contexts/SearchContext";
 import BooksList from "../../components/books_list/BooksList";
 import SearchBar from "../../components/search_bar/SearchBar";
 import PageLayout from "../../components/layout/PageLayout";
 import CustomErrorMessage from "../../components/error_msg/CustomErrorMessage";
-import Loader from '../../components/loader/Loader'
+import Loader from "../../components/loader/Loader";
 import { getBooks } from "../../services/GoogleBooksAPI";
 
 const Home = () => {
-  const { query } = useSearchContext();
+  const { query, searchTerm, setQuery } = useSearchContext();
   const { data, error, isError, isLoading } = useQuery(["home", query], () =>
-  getBooks(query)
+    getBooks(query)
   );
- 
+
+  useEffect(() => {
+    const preparedQuery = searchTerm
+      .trim()
+      .toLocaleLowerCase()
+      .split(" ")
+      .join("+");
+    setQuery((prevState) => ({
+      ...prevState,
+      searchText: preparedQuery,
+    }));
+  }, [searchTerm]);
+
   console.log(data);
   // console.log("query", query);
   return (

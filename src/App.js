@@ -6,7 +6,7 @@ import SearchContextProvider from './contexts/SearchContext'
 import HomePage from "./pages/home/Home";
 import BookPage from "./pages/book_page/BookPage";
 import AppRouter from "./components/AppRouter";
-import TestDelete from './TestDelete'
+
 
 function App() {
   return (
@@ -18,7 +18,6 @@ function App() {
           <Routes>
             <Route path="/books/:id" element={<BookPage />} />
             <Route path="/" element={<HomePage />} />
-            <Route path="/test" element={<TestDelete />} />
 
             {/* <Route element={<PageNotFound />} /> */}
           </Routes>

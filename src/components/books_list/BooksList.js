@@ -10,14 +10,16 @@ const BooksList = ({ data }) => {
   );
   return (
     <div className={styles.booksListWrapper}>
-      {data?.items.slice(0, limit).map((book) => (
-        <BookCard
-          key={uuidv4()}
-          image={book.volumeInfo.imageLinks?.smallThumbnail}
-          title={book.volumeInfo.title}
-          id={book.id}
-        />
-      ))}
+      {data?.items
+        .slice(0, limit)
+        .map((book) => (
+          <BookCard
+            key={uuidv4()}
+            image={book.volumeInfo.imageLinks?.smallThumbnail}
+            title={book.volumeInfo.title}
+            id={book.id}
+          />
+        ))}
       <div className="button-wrapper">
         <button
           onClick={onLoadMore}
