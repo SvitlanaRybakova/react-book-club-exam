@@ -3,6 +3,7 @@ import { Col } from "react-bootstrap";
 import styles from "./SearchBar.module.css";
 import { suggestions } from "../../services/const";
 import cross from '../../assets/images/cross.png'
+import { useNavbarContext } from "../../contexts/NavbarContext";
 
 const SuggestionsListComponent = ({
   onClick,
@@ -31,14 +32,15 @@ const SuggestionsListComponent = ({
   );
 };
 
-const GenreOptions = ({ input, setInput }) => {
+const GenreOptions = ({ }) => {
+  const {setQuery} = useNavbarContext();
+  const [input, setInput] = useState("");
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(0);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  // todo write the input value
+  
 
-
-  console.log("Input", input);
+  // console.log("Input", input);
   const onChange = (e) => {
     const userInput = e.target.value;
 
@@ -59,7 +61,13 @@ const GenreOptions = ({ input, setInput }) => {
     setInput(e.target.innerText);
     setActiveSuggestionIndex(0);
     setShowSuggestions(false);
+
+   setQuery((prevState) => ({
+     ...prevState,
+     genre: e.target.innerText,
+   }));
   };
+  // todo implement this function
   const onKeyDown = (e) => {
     console.log("press key down", e);
   };

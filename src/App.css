@@ -104,3 +104,12 @@ p, h1, h2, h3, h4, h5, h6 {
 .username {
   font-weight: bold;
 }
+
+input {
+  outline-color: rgba(255, 166, 0, 0.37) !important;
+}
+
+input:focus {
+  border-color: var(--orange) !important;
+  box-shadow: none !important;
+}
