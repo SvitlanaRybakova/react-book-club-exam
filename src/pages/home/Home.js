@@ -9,22 +9,23 @@ import Loader from "../../components/loader/Loader";
 import { getBooks } from "../../services/GoogleBooksAPI";
 
 const Home = () => {
-  const { query, searchTerm, setQuery } = useSearchContext();
-  const { data, error, isError, isLoading } = useQuery(["home", query], () =>
-    getBooks(query)
+  const { query, searchTerm, setQuery, searchParams } = useSearchContext();
+  const { data, error, isError, isLoading } = useQuery(
+    ["home", query],
+    () => getBooks(query)
   );
 
-  useEffect(() => {
-    const preparedQuery = searchTerm
-      .trim()
-      .toLocaleLowerCase()
-      .split(" ")
-      .join("+");
-    setQuery((prevState) => ({
-      ...prevState,
-      searchText: preparedQuery,
-    }));
-  }, [searchTerm]);
+  // useEffect(() => {
+  //   const preparedQuery = searchTerm
+  //     .trim()
+  //     .toLocaleLowerCase()
+  //     .split(" ")
+  //     .join("+");
+  //   setQuery((prevState) => ({
+  //     ...prevState,
+  //     searchText: preparedQuery,
+  //   }));
+  // }, [searchTerm]);
 
   return (
     <PageLayout>

@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
 export const SearchContext = createContext();
@@ -9,7 +9,7 @@ export const useSearchContext = () => {
 
 const SearchContextProvider = ({ children }) => {
   let [searchParams, setSearchParams] = useSearchParams({});
-  const searchTerm = searchParams.get("text") || "";
+  const searchTerm = searchParams.get("searchText") || "";
 
   const [query, setQuery] = useState({
     searchText: "",
@@ -18,36 +18,36 @@ const SearchContextProvider = ({ children }) => {
     popular: false,
   });
 
-  const handleSearch = (event) => {
-    // set search text to url
-    const text = event.target.value;
+  // changes the browser URL every time when the query has been changed
+  useEffect(() => {
+    handleUrl();
+  }, [query]);
 
-    if (text) {
-      setSearchParams({ text: text });
-    } else {
-      setSearchParams({});
+  const handleUrl = () => {
+    const params = {};
+    if (query.searchText.length) {
+      params.searchText = query.searchText;
     }
-    
+    if (query.lang.length) {
+      params.lang = query.lang;
+    }
+    if (query.genre) {
+      params.genre = query.genre;
+    }
 
-      // update query for sending to API
-      const preparedQuery = searchTerm
-        .trim()
-        .toLocaleLowerCase()
-        .split(" ")
-        .join("+");
-    setQuery((prevState) => ({
-      ...prevState,
-      searchText: preparedQuery,
-    }));
+    if (query.popular) {
+      params.popular = query.popular;
+    }
+    setSearchParams(params);
   };
-
 
   const values = {
     query,
     setQuery,
-    handleSearch,
     setSearchParams,
     searchTerm,
+    handleUrl,
+    searchParams,
   };
 
   return (

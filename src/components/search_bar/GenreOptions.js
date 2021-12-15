@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Col } from "react-bootstrap";
 import styles from "./SearchBar.module.css";
 import { suggestions } from "../../services/const";
-import cross from '../../assets/images/cross.png'
+import cross from "../../assets/images/cross.png";
 import { useSearchContext } from "../../contexts/SearchContext";
 
 const SuggestionsListComponent = ({
@@ -38,7 +38,7 @@ const GenreOptions = () => {
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(0);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  
+
   const onChange = (e) => {
     const userInput = e.target.value;
 
@@ -60,10 +60,10 @@ const GenreOptions = () => {
     setActiveSuggestionIndex(0);
     setShowSuggestions(false);
 
-   setQuery((prevState) => ({
-     ...prevState,
-     genre: e.target.innerText,
-   }));
+    setQuery((prevState) => ({
+      ...prevState,
+      genre: e.target.innerText,
+    }));
   };
   // todo implement this function
   const onKeyDown = (e) => {

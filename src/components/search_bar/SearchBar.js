@@ -8,9 +8,8 @@ import PopularOption from "./PopularOption";
 const SearchBar = () => {
   return (
     <>
-      <SearchInput  />
-
-      <form>
+      <form onSubmit={(e) => e.preventDefault()}>
+        <SearchInput   />
         <Row className="align-items-baseline">
           <LangvOptions  />
 

@@ -3,26 +3,30 @@ import styles from "./SearchBar.module.css";
 import cross from "../../assets/images/cross.png";
 import { useSearchContext } from "../../contexts/SearchContext";
 
-
 const SearchInput = () => {
   const {
     searchTerm,
-    handleSearch,
     setSearchParams,
+    setQuery,
   } = useSearchContext();
+
+  const handleClick = (e) => {
+    setQuery((prevState) => ({
+      ...prevState,
+      searchText: e.target.value,
+    }));
+  };
 
   return (
     <div className={styles.searchWrapper}>
-      <form className={styles.searchForm} onSubmit={(e) => e.preventDefault()}>
+      <div className={styles.searchForm}>
         <input
           className={styles.searchInput}
           type="text"
           name="search"
           placeholder="Search.."
           value={searchTerm}
-          onChange={(e) => {
-            handleSearch(e);
-          }}
+          onChange={(e) => handleClick(e)}
         />
         <img
           src={cross}
@@ -30,7 +34,7 @@ const SearchInput = () => {
           className={styles.cross}
           onClick={() => setSearchParams({ text: "" })}
         />
-      </form>
+      </div>
     </div>
   );
 };

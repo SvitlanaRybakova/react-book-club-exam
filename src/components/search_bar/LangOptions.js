@@ -5,6 +5,13 @@ import styles from "./SearchBar.module.css";
 
 const LangOptions = () => {
   const { query, setQuery } = useSearchContext();
+
+  const handleClick = (e) => {
+    setQuery((prevState) => ({
+      ...prevState,
+      lang: e.target.value,
+    }));
+  };
   return (
     <Col sm={3} className={styles.radioBtn}>
       <div className={styles.radioOption}>
@@ -15,12 +22,7 @@ const LangOptions = () => {
             name="language"
             checked={query.lang === "en" ? true : false}
             value="en"
-            onChange={(e) =>
-              setQuery((prevState) => ({
-                ...prevState,
-                lang: e.target.value,
-              }))
-            }
+            onChange={(e) => handleClick(e)}
           />
           <span className={styles.checkmark}></span>
         </label>
@@ -30,13 +32,8 @@ const LangOptions = () => {
             type="radio"
             name="language"
             value="sv"
-            checked={query.lang === 'sv'? true: false}
-            onChange={(e) =>
-              setQuery((prevState) => ({
-                ...prevState,
-                lang: e.target.value,
-              }))
-            }
+            checked={query.lang === "sv" ? true : false}
+            onChange={(e) => handleClick(e)}
           />
           <span className={styles.checkmark}></span>
         </label>
