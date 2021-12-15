@@ -7,7 +7,8 @@ const List = () => {
   const navigate = useNavigate()
   return (
     <>
-      <ListGroup as="ol" numbered className="mt-4">
+      <h2 className={styles.profileTitle}>My List</h2>
+      <ListGroup as="ol" numbered>
         <ListGroup.Item
           as="li"
           className="d-flex justify-content-between align-items-start"

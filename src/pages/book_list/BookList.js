@@ -1,11 +1,19 @@
-import React from 'react'
-
+import React, { useState } from "react";
+import PageLayout from "../../components/layout/PageLayout";
+import BookListItem from "./BookListItem";
+import ModalReview from "./ModalReview";
 const BookList = () => {
-  return (
-    <div>
-      My book list
-    </div>
-  )
-}
+  const [show, setShow] = useState(false);
 
-export default BookList
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  return (
+    <PageLayout>
+      <BookListItem handleShow={handleShow} />
+      <ModalReview show={show} handleClose={handleClose} />
+    </PageLayout>
+  );
+};
+
+export default BookList;

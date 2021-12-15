@@ -1,0 +1,30 @@
+.modalTitle {
+  font-size: 1rem;
+  color: var(--gray);
+}
+
+.closeBtn {
+  background-color: var(--grayPlaceholder);
+  color: var(--white);
+  padding: 5px 15px;
+  border-radius: 5px;
+  border: 1px solid var(--grayPlaceholder);
+}
+
+.closeBtn:hover {
+  background-color: var(--white);
+  color: var(--grayPlaceholder);
+}
+
+.sendBtn {
+  background-color: var(--orange);
+  color: var(--white);
+  padding: 5px 15px;
+  border-radius: 5px;
+  border: 1px solid var(--orange);
+}
+
+.sendBtn:hover {
+  background-color: var(--white);
+  color: var(--orange);
+}
