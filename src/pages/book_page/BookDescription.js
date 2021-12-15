@@ -3,7 +3,8 @@ import { Col, Row } from "react-bootstrap";
 import Image from "../../components/image/Image";
 import styles from "./BookPage.module.css";
 import {AMMOUNT_OF_SYMBOLS} from '../../services/const'
-import Rating from '../../components/rating/Rating'
+import Rating from './rating/Rating'
+import AddToListBtn from "./add_to_list/AddToListBtn";
 
 
 const BookDescription = ({ bookInfo }) => {
@@ -60,7 +61,14 @@ const BookDescription = ({ bookInfo }) => {
               </Col>
             )}
           </Row>
-          <Rating />
+          <Row className="mt-5">
+            <Col md={4}>
+              <AddToListBtn />
+            </Col>
+            <Col>
+              <Rating />
+            </Col>
+          </Row>
         </div>
       )}
     </>

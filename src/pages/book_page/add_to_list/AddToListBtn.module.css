@@ -1,0 +1,7 @@
+.btnContentWrapper {
+  display: flex ;
+  flex-wrap: wrap;
+  justify-content: center;
+  color: var(--gray);
+  text-align: center
+}

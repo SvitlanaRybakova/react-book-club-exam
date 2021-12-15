@@ -27,10 +27,10 @@ const SearchContextProvider = ({ children }) => {
 
   // triggers state when URL changes by clicking browser back btn
   // (date copy from URL to state)
-  useEffect(() => {
-    const obj = Object.fromEntries(new URLSearchParams(location.search));
-    setQuery({ ...obj });
-  }, [searchParams]);
+  // useEffect(() => {
+  //   const obj = Object.fromEntries(new URLSearchParams(location.search));
+  //   setQuery({ ...obj });
+  // }, [searchParams]);
 
   const handleUrl = () => {
     const params = {};

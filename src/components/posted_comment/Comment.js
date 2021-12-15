@@ -13,7 +13,7 @@ const Comment = () => {
         <Col className="username"> Bob</Col>
         <Col className="d-flex">
           {[1,2,3,4,5].map((index) => {
-              return <StarIcon fill={index <= 3 ? "#FFD233" : "none"} />;
+              return <StarIcon key={index} fill={index <= 3 ? "#FFD233" : "none"} />;
           })}
         </Col>
         <Col> 17:33 6th Aug 2021 </Col>
