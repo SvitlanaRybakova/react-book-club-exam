@@ -3,6 +3,7 @@ import { Col, Row } from "react-bootstrap";
 import Image from "../../components/image/Image";
 import styles from "./BookPage.module.css";
 import {AMMOUNT_OF_SYMBOLS} from '../../services/const'
+import Rating from '../../components/rating/Rating'
 
 
 const BookDescription = ({ bookInfo }) => {
@@ -59,6 +60,7 @@ const BookDescription = ({ bookInfo }) => {
               </Col>
             )}
           </Row>
+          <Rating />
         </div>
       )}
     </>
