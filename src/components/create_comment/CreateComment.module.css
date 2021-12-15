@@ -1,5 +1,10 @@
+.wrapper {
+  padding: 20px;
+  margin: 20px 12px;
+  background-color: var(--white);
+}
+
 .commentWrapper {
-  padding: 0px 12px;
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
@@ -7,14 +12,27 @@
 }
 
 .commentInput {
-  border: none;
-  width: 90%;
+  border: 1px solid var(--grayBorder);
+  border-radius: 5px;
+  width: 80%;
   padding: 8px;
 }
 
 .postBtn {
   margin-left: 20px;
+  padding: 10px;
   background-color: var(--orange);
   border: none;
-  flex: 0 0 15%
+  flex: 0 0 20%
+}
+
+/* rating stars */
+
+.starIcon {
+  height: 1.6rem;
+  width: 1.6rem;
+}
+
+.starsWrapper {
+  cursor: pointer;
 }
