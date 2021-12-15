@@ -1,7 +1,7 @@
 import React, {useMemo} from 'react'
 import styles from '../CreateComment.module.css';
 
-function StarIcon(props) {
+export function StarIcon(props) {
   const { fill = "none" } = props;
   return (
     <svg
@@ -43,7 +43,7 @@ const RatingIcon = (props) => {
   }, [rating, hoverRating, index]);
 
   return (
-    <div>
+    
       <div
         className={styles.starsWrapper}
         onMouseEnter={() => onMouseEnter(index)}
@@ -52,7 +52,7 @@ const RatingIcon = (props) => {
       >
         <StarIcon fill={fill} />
       </div>
-    </div>
+    
   );
 }
 
