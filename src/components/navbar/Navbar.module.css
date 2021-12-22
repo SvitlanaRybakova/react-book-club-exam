@@ -8,9 +8,9 @@
 
 .logo {
   font-weight: bold;
-  font-size: 30px;
+  font-size: 24px;
   color: var(--white);
-  display: none;
+  
 }
 
 
@@ -19,15 +19,4 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
-}
-
-
-@media(min-width: 768px){
-  .menuBar{
-    display: none;
-  }
-
-  .logo{
-    display: block;
-  }
 }

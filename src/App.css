@@ -78,6 +78,7 @@ p, h1, h2, h3, h4, h5, h6 {
   --black: #000000;
   --grayBorder: #C4C4C4;
   --bg: #E5E5E5;
+  --red: red;
 }
 
 /*
@@ -114,12 +115,22 @@ input:focus {
   box-shadow: none !important;
 }
 
+button {
+  border: 1px solid var(--orange) !important;
+}
+
 button:hover {
-  background-color: #ffc107 !important;
-  border-color: none !important;
+  background-color: var(--white)!important;
+  color: var(--orange) !important;
+  border: 1px solid var(--orange) !important;
 }
 
 button:focus {
   border-color: none !important;
   box-shadow: none !important;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }

@@ -11,7 +11,6 @@ const Profile = ({ title }) => {
   const [isEditOpen, setEditOpen] = useState(false)
   return (
     <div className={styles.profileWrapper}>
-      {title && <h1 className="logoTitle">{title}</h1>}
       <Row className="justify-content-between">
         <Col className="d-flex align-items-center">
           <div className="userLogo">
