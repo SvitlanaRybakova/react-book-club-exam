@@ -16,35 +16,40 @@ const Authorization = () => {
     setError(null);
   }, 5000);
 
-  const handleLoginClick = async (e) => {
+  const handleClick = async (e, action) => {
     e.preventDefault();
     setError(null);
 
     // try to login the user with the specified credentials
     try {
       setLoading(true);
-      await login(emailRef.current.value, passwordRef.current.value);
+      if(action === "login"){
+        await login(emailRef.current.value, passwordRef.current.value);
+      }
+      if (action === "signup") {
+         await signup(emailRef.current.value, passwordRef.current.value);
+      }
     } catch (e) {
       setError(e.message);
       setLoading(false);
     }
-    emailRef.current.value = "";
-    passwordRef.current.value = "";
+    // emailRef.current.value = "";
+    // passwordRef.current.value = "";
   };
 
-  const handleSignUp = async (e) => {
-    e.preventDefault();
-    setError(null);
+  // const handleSignUp = async (e) => {
+  //   e.preventDefault();
+  //   setError(null);
 
-    // try to sign up the user with the specified credentials
-    try {
-      setLoading(true);
-      await signup(emailRef.current.value, passwordRef.current.value);
-    } catch (e) {
-      setError(e.message);
-      setLoading(false);
-    }
-  };
+  //   // try to sign up the user with the specified credentials
+  //   try {
+  //     setLoading(true);
+  //     await signup(emailRef.current.value, passwordRef.current.value);
+  //   } catch (e) {
+  //     setError(e.message);
+  //     setLoading(false);
+  //   }
+  // };
 
   return (
     <div className={styles.authWrapper}>
@@ -64,19 +69,25 @@ const Authorization = () => {
           ref={passwordRef}
           required
         />
-        <div className={styles.error}>{error && <span>{error}</span>}</div>
+        <div className={styles.error}>
+          {error && <span className="text-danger">{error}</span>}
+        </div>
 
         <div className={styles.forgotPassword}>
           <Link to="/reset-password">Forgot Password?</Link>
         </div>
         <Button
           disabled={loading}
-          onClick={handleLoginClick}
+          onClick={(e) => handleClick(e, "login")}
           className={styles.loginBtn}
         >
           LOG IN
         </Button>
-        <div onClick={handleSignUp} role="button" className={styles.signupBtn}>
+        <div
+          onClick={(e) => handleClick(e, "signup")}
+          role="button"
+          className={styles.signupBtn}
+        >
           {" "}
           SIGN UP
         </div>

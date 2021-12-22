@@ -1,22 +1,35 @@
-import React, {useState} from "react";
-import {  Row, Col } from "react-bootstrap";
+import React, { useState } from "react";
+import { Row, Col } from "react-bootstrap";
 import { BiEdit } from "react-icons/bi";
 import { IoLogOutOutline } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../contexts/AuthContext";
 import styles from "./Profile.module.css";
 import userLogo from "../../assets/images/user.png";
-import Edit from './Edit'
-import List from './List'
+import Edit from "./Edit";
+import List from "./List";
 
-const Profile = ({ title }) => {
-  const [isEditOpen, setEditOpen] = useState(false)
+const Profile = () => {
+  const [isEditOpen, setEditOpen] = useState(false);
+  const { currentUser, logout } = useAuthContext();
+  const navigate = useNavigate();
+
+  const handleLogoutClick = async (e) => {
+    e.preventDefault();
+    await logout();
+    navigate("/");
+  };
   return (
     <div className={styles.profileWrapper}>
       <Row className="justify-content-between">
         <Col className="d-flex align-items-center">
           <div className="userLogo">
-            <img src={userLogo} alt="user logo" />
+            <img
+              src={currentUser.photoURL ? currentUser.photoURL : userLogo}
+              alt="user logo"
+            />
           </div>
-          <span className="username">Svitlana</span>
+          <span className="username">{currentUser.displayName}</span>
         </Col>
         <Col className="d-flex align-items-center justify-content-end ">
           <div
@@ -26,7 +39,11 @@ const Profile = ({ title }) => {
           >
             <BiEdit />
           </div>
-          <div role="button" className={styles.icons}>
+          <div
+            role="button"
+            className={styles.icons}
+            onClick={handleLogoutClick}
+          >
             <IoLogOutOutline />
           </div>
         </Col>
