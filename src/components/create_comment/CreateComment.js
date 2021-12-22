@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { v4 as uuidv4 } from "uuid";
 import { Button } from "react-bootstrap";
 import RatingIcon from './Rating_icons/RatingIcon'
 import styles from "./CreateComment.module.css";
@@ -23,6 +24,7 @@ const CreateComment = () => {
         {[1, 2, 3, 4, 5].map((index) => {
           return (
             <RatingIcon
+              key={uuidv4()}
               index={index}
               rating={rating}
               hoverRating={hoverRating}

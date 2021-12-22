@@ -1,22 +1,45 @@
 import React, { useState } from "react";
 import { FcCheckmark } from "react-icons/fc";
 import { TiDelete } from "react-icons/ti";
-import styles from './AddToListBtn.module.css'
+import useAddBookToList from "../../../hooks/useAddBookToList";
+import styles from "./AddToListBtn.module.css";
 
-const AddToListBtn = () => {
+const AddToListBtn = ({ bookInfo }) => {
   const [isBookAdded, setAddBook] = useState(false);
+  const { error, isError, isSuccess, mutate } = useAddBookToList();
+
+  const [book, setBook] = useState({
+    title: bookInfo.title,
+    author: bookInfo.authors[0],
+    image: bookInfo.imageLinks.smallThumbnail,
+  });
+
+  const handleAddBookClick = () => {
+    setAddBook(!isBookAdded);
+    mutate(book);
+  };
+
+  if(isError){
+    console.log("book hasn't been added", error);
+  }
+  if(isSuccess){
+    console.log("book has been added");
+  }
   return (
-    <div role="button" onClick={() => setAddBook(!isBookAdded)}>
-      {isBookAdded ? (
-        <div className={styles.btnContentWrapper}>
-          <TiDelete size={30} color={"red"} /> <span> Book has been added</span>
-        </div>
-      ) : (
-        <div className={styles.btnContentWrapper}>
-          <FcCheckmark size={20} /> <span>Add to my book list</span>
-        </div>
-      )}
-    </div>
+    <>
+      <div role="button" onClick={handleAddBookClick}>
+        {isBookAdded ? (
+          <div className={styles.btnContentWrapper}>
+            <TiDelete size={30} color={"red"} />{" "}
+            <span> Book has been added</span>
+          </div>
+        ) : (
+          <div className={styles.btnContentWrapper}>
+            <FcCheckmark size={20} /> <span>Add to my book list</span>
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 

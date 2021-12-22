@@ -38,8 +38,9 @@ const Edit = () => {
       setMessage("Profile successfully updated");
       setLoading(false);
     } catch (e) {
-      setError("Error updating profile. Try logging out and in again.");
-      console.log(e);
+      // setError("Error updating profile. Try logging out and in again.");
+      setError(e.message);
+      console.log(e.message);
       setLoading(false);
     }
   };

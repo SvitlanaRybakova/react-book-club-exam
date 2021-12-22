@@ -63,7 +63,7 @@ const BookDescription = ({ bookInfo }) => {
           </Row>
           <Row className="mt-5">
             <Col md={4}>
-              <AddToListBtn />
+              <AddToListBtn bookInfo={bookInfo} />
             </Col>
             <Col>
               <Rating />
