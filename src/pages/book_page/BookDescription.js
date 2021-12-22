@@ -7,7 +7,7 @@ import Rating from './rating/Rating'
 import AddToListBtn from "./add_to_list/AddToListBtn";
 
 
-const BookDescription = ({ bookInfo }) => {
+const BookDescription = ({ bookInfo, id }) => {
   const [isFullDesc, setFullDesc] = useState(false);
 
   return (
@@ -63,7 +63,7 @@ const BookDescription = ({ bookInfo }) => {
           </Row>
           <Row className="mt-5">
             <Col md={4}>
-              <AddToListBtn bookInfo={bookInfo} />
+              <AddToListBtn bookInfo={bookInfo} id={id}/>
             </Col>
             <Col>
               <Rating />

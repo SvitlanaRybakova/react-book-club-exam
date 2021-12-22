@@ -4,6 +4,7 @@ import NavbarCustom from "./components/navbar/NavbarCustom";
 import NavbarContextProvider from "./contexts/NavbarContext";
 import SearchContextProvider from "./contexts/SearchContext";
 import AuthContextProvider from "./contexts/AuthContext";
+import RequireAuth from './components/RequireAuth'
 import HomePage from "./pages/home/Home";
 import BookPage from "./pages/book_page/BookPage";
 import BookList from "./pages/book_list/BookList";
@@ -19,8 +20,17 @@ function App() {
             <Routes>
               <Route path="/books/:id" element={<BookPage />} />
               <Route path="/" element={<HomePage />} />
-              <Route path="/book-list" element={<BookList />} />
               <Route path="/reset-password" element={<ResetPassword />} />
+              {/* Protected routes */}
+
+              <Route
+                path="/book-list"
+                element={
+                  <RequireAuth redirectTo="/">
+                    <BookList /> 
+                  </RequireAuth>
+                }
+              />
               {/* <Route element={<PageNotFound />} /> */}
             </Routes>
           </SearchContextProvider>

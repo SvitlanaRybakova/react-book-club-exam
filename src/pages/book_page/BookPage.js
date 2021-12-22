@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getBook } from "../../services/GoogleBooksAPI";
@@ -10,17 +10,12 @@ import Comment from "../../components/posted_comment/Comment";
 import CustomErrorMessage from '../../components/error_msg/CustomErrorMessage'
 import Loader from '../../components/loader/Loader'
 
-const BookPage = () => {
-  const [bookInfo, setBookInfo] = useState();
-
+const BookPage = () => { 
   const { id } = useParams();
   const { data, error, isError, isLoading } = useQuery(["bookPage", id], () =>
     getBook(id)
   );
 
-  useEffect(() => {
-    setBookInfo(data?.data.volumeInfo);
-  }, [data]);
 
   return (
     <>
@@ -28,10 +23,10 @@ const BookPage = () => {
         <PageLayout>
           {isError && <CustomErrorMessage error={error} />}
           {isLoading && <Loader />}
-          {bookInfo && (
+          {data?.data.volumeInfo && (
             <>
-              <BookDescription bookInfo={bookInfo} />
-              <BookExtraDescription bookInfo={bookInfo} />
+              <BookDescription bookInfo={data?.data.volumeInfo} id={data?.data.id}/>
+              <BookExtraDescription bookInfo={data?.data.volumeInfo} />
               <CreateComment />
               <Comment />
             </>

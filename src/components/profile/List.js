@@ -1,5 +1,5 @@
 import React from "react";
-import { ListGroup, Button } from "react-bootstrap";
+import { ListGroup, Button, Alert } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
 import styles from "./Profile.module.css";
@@ -31,6 +31,9 @@ const List = () => {
             </ListGroup.Item>
           ))}
         </ListGroup>
+      )}
+      {data?.length <= 0 && (
+        <Alert variant="light"> You do not have books</Alert>
       )}
       <Button className={styles.saveBtn} onClick={() => navigate("/book-list")}>
         Go to all list

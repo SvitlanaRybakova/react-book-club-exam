@@ -31,6 +31,7 @@ const useUploadBookToList = () => {
         image: book.image,
         author: book.author,
         user: currentUser.uid,
+        apiID: book.apiId,
       });
 
       setIsSuccess(true);
