@@ -34,6 +34,11 @@
   font-size: 20px;
 }
 
-.message{
+.message {
   height: 30px;
+}
+
+.bookDescription{
+  text-align: initial;
+  
 }

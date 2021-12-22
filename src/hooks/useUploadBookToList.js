@@ -2,9 +2,9 @@ import { useState } from "react";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 // import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { useAuthContext } from "../contexts/AuthContext";
-import { db, storage } from "../firebase";
+import { db } from "../firebase";
 
-const useAddBookToList = () => {
+const useUploadBookToList = () => {
   const [error, setError] = useState(null);
   const [isError, setIsError] = useState(null);
   const [isMutating, setIsMutating] = useState(null);
@@ -13,7 +13,6 @@ const useAddBookToList = () => {
   const { currentUser } = useAuthContext();
 
   const mutate = async (book) => {
-
     console.log(book);
     // reset internal state
     setError(null);
@@ -22,12 +21,8 @@ const useAddBookToList = () => {
     setIsMutating(true);
 
     try {
-      
       // create reference to db-collection 'bookList'
-      const collectionRef = collection(
-        db,
-        `bookList`
-      );
+      const collectionRef = collection(db, `bookList`);
 
       // create document in db for the uploaded image
       await addDoc(collectionRef, {
@@ -50,4 +45,4 @@ const useAddBookToList = () => {
   return { error, isError, isMutating, isSuccess, mutate };
 };
 
-export default useAddBookToList;
+export default useUploadBookToList;

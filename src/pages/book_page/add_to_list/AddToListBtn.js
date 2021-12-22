@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { FcCheckmark } from "react-icons/fc";
 import { TiDelete } from "react-icons/ti";
-import useAddBookToList from "../../../hooks/useAddBookToList";
+import useUploadBookToList from "../../../hooks/useUploadBookToList";
 import styles from "./AddToListBtn.module.css";
 
 const AddToListBtn = ({ bookInfo }) => {
   const [isBookAdded, setAddBook] = useState(false);
-  const { error, isError, isSuccess, mutate } = useAddBookToList();
+  const { error, isError, isSuccess, mutate } = useUploadBookToList();
 
   const [book, setBook] = useState({
     title: bookInfo.title,
