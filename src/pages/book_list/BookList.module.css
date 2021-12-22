@@ -28,3 +28,11 @@
   background-color: var(--white);
   color: var(--orange);
 }
+
+.show {
+  display: block !important;
+}
+
+.hide {
+  display: none !important;
+}
