@@ -5,10 +5,13 @@ import styles from "./BookPage.module.css";
 import {AMMOUNT_OF_SYMBOLS} from '../../services/const'
 import Rating from './rating/Rating'
 import AddToListBtn from "./add_to_list/AddToListBtn";
+import LoginWarning from './login_warning/LoginWarning'
+import { useAuthContext } from "../../contexts/AuthContext";
 
 
 const BookDescription = ({ bookInfo, id }) => {
   const [isFullDesc, setFullDesc] = useState(false);
+const { currentUser } = useAuthContext();
 
   return (
     <>
@@ -62,11 +65,19 @@ const BookDescription = ({ bookInfo, id }) => {
             )}
           </Row>
           <Row className="mt-5">
-            <Col md={4}>
-              <AddToListBtn bookInfo={bookInfo} id={id}/>
-            </Col>
             <Col>
               <Rating />
+            </Col>
+          </Row>
+          <Row className="mt-5">
+            <Col>
+              {currentUser ? (
+                <AddToListBtn bookInfo={bookInfo} id={id} />
+              ) : (
+                <LoginWarning
+                  message={"Please log in to add the book to the list"}
+                />
+              )}
             </Col>
           </Row>
         </div>

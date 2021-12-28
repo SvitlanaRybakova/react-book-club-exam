@@ -15,6 +15,7 @@ const BookListItem = ({ setShow, book }) => {
     console.log("The book has not been deleted", error);
   }
   return (
+    <>
     <Row className="align-items-center my-3">
       <Col sm={2}>
         <Img
@@ -41,7 +42,10 @@ const BookListItem = ({ setShow, book }) => {
           <RiDeleteBin6Line size={30} color={"gray"} onClick={mutate} />
         </div>
       </Col>
+      
     </Row>
+    <hr/>
+    </>
   );
 };
 

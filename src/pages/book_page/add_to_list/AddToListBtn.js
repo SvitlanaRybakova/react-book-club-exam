@@ -45,7 +45,7 @@ const AddToListBtn = ({ bookInfo, id }) => {
         {isBookAdded ? (
           <div className={styles.btnContentWrapper}>
             <TiDelete size={30} color={"red"} />{" "}
-            <span> Book has been added</span>
+           <span style={{paddingTop: "4px"}}>Book has been added</span> 
           </div>
         ) : (
           <div className={styles.btnContentWrapper}>

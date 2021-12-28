@@ -20,36 +20,26 @@ const Authorization = () => {
     e.preventDefault();
     setError(null);
 
-    // try to login the user with the specified credentials
-    try {
-      setLoading(true);
-      if(action === "login"){
-        await login(emailRef.current.value, passwordRef.current.value);
+    if (emailRef.current.value.trim() && passwordRef.current.value) {
+      // try to login the user with the specified credentials
+      try {
+        setLoading(true);
+        if (action === "login") {
+          await login(emailRef.current.value, passwordRef.current.value);
+        }
+        if (action === "signup") {
+          await signup(emailRef.current.value, passwordRef.current.value);
+        }
+      } catch (e) {
+        setError(e.message);
+        setLoading(false);
       }
-      if (action === "signup") {
-         await signup(emailRef.current.value, passwordRef.current.value);
-      }
-    } catch (e) {
-      setError(e.message);
-      setLoading(false);
+      // emailRef.current.value = "";
+      // passwordRef.current.value = "";
+    } else {
+      setError("Please, enter all fields");
     }
-    // emailRef.current.value = "";
-    // passwordRef.current.value = "";
   };
-
-  // const handleSignUp = async (e) => {
-  //   e.preventDefault();
-  //   setError(null);
-
-  //   // try to sign up the user with the specified credentials
-  //   try {
-  //     setLoading(true);
-  //     await signup(emailRef.current.value, passwordRef.current.value);
-  //   } catch (e) {
-  //     setError(e.message);
-  //     setLoading(false);
-  //   }
-  // };
 
   return (
     <div className={styles.authWrapper}>

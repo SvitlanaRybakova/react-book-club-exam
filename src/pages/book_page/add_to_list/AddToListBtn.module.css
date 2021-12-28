@@ -1,7 +1,12 @@
 .btnContentWrapper {
-  display: flex ;
+  cursor: pointer;
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  color: var(--gray);
-  text-align: center
+  /* color: var(--orange); */
+  text-align: center;
+  border: 1px solid var(--grayBorder);
+  border-radius: 5px;
+  padding: 15px 5px;
+  width: 40%;
 }

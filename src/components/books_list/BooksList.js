@@ -9,6 +9,7 @@ const BooksList = ({ data }) => {
     data?.items.length
   );
   return (
+    <>
     <div className={styles.booksListWrapper}>
       {data?.items
         .slice(0, limit)
@@ -20,7 +21,9 @@ const BooksList = ({ data }) => {
             id={book.id}
           />
         ))}
-      <div className="button-wrapper">
+     
+    </div>
+     <div className="text-center">
         <button
           onClick={onLoadMore}
           className={ammountOfClick === 0 ? styles.delete : styles.loadMore_btn}
@@ -28,7 +31,7 @@ const BooksList = ({ data }) => {
           Load more
         </button>
       </div>
-    </div>
+      </>
   );
 };
 

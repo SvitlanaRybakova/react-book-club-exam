@@ -47,6 +47,10 @@
 
 }
 
+.loginWarning{
+  color: var(--orange)
+}
+
 @media(min-width: 767px) {
   .imgWrapper {
     display: block;

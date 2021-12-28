@@ -7,15 +7,17 @@ import BookDescription from "./BookDescription";
 import BookExtraDescription from "./BookExtraDescription";
 import CreateComment from "../../components/create_comment/CreateComment";
 import Comment from "../../components/posted_comment/Comment";
-import CustomErrorMessage from '../../components/error_msg/CustomErrorMessage'
-import Loader from '../../components/loader/Loader'
+import CustomErrorMessage from "../../components/error_msg/CustomErrorMessage";
+import Loader from "../../components/loader/Loader";
+import { useAuthContext } from "../../contexts/AuthContext";
+import LoginWarning from './login_warning/LoginWarning'
 
-const BookPage = () => { 
+const BookPage = () => {
   const { id } = useParams();
   const { data, error, isError, isLoading } = useQuery(["bookPage", id], () =>
     getBook(id)
   );
-
+  const { currentUser } = useAuthContext();
 
   return (
     <>
@@ -25,9 +27,19 @@ const BookPage = () => {
           {isLoading && <Loader />}
           {data?.data.volumeInfo && (
             <>
-              <BookDescription bookInfo={data?.data.volumeInfo} id={data?.data.id}/>
+              <BookDescription
+                bookInfo={data?.data.volumeInfo}
+                id={data?.data.id}
+              />
               <BookExtraDescription bookInfo={data?.data.volumeInfo} />
-              <CreateComment />
+
+              {currentUser ? (
+                <CreateComment />
+              ) : (
+                <LoginWarning
+                  message={"Please log in to write a comment"}
+                />
+              )}
               <Comment />
             </>
           )}

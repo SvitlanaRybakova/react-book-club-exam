@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useFirestoreQueryData } from "@react-query-firebase/firestore";
 import { collection, query, where, orderBy, limit } from "firebase/firestore";
 import { db } from "../firebase";
@@ -5,12 +6,15 @@ import { useAuthContext } from "../contexts/AuthContext";
 
 const useBookList = () => {
   const { currentUser } = useAuthContext();
-  
-    const queryRef = query(
+  let queryRef;
+
+  if(currentUser){
+     queryRef = query(
       collection(db, "bookList"),
       where("user", "==", currentUser.uid),
       orderBy("created")
     );
+  }
  
 
   const booksQuery = useFirestoreQueryData(
@@ -25,6 +29,7 @@ const useBookList = () => {
     }
   );
   return booksQuery;
+  
 };
 
 export default useBookList;
