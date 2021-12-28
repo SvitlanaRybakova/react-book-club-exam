@@ -30,7 +30,10 @@ const AddToListBtn = ({ bookInfo, id }) => {
   });
 
   const handleAddBookClick = () => {
-    mutate(book);
+    //  checks if the book has been already added
+    if (!isBookAdded) {
+      mutate(book);
+    }
   };
 
   if (isError) {
