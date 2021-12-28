@@ -1,12 +1,18 @@
-import React, {useState} from "react";
+import React, { useState, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Button } from "react-bootstrap";
-import RatingIcon from './Rating_icons/RatingIcon'
+import useUploadComment from "../../hooks/useUploadComment";
+import RatingIcon from "./Rating_icons/RatingIcon";
+import CustomErrorMessage from "../error_msg/CustomErrorMessage";
 import styles from "./CreateComment.module.css";
+import Loader from "react-spinners/BarLoader";
 
-const CreateComment = () => {
+const CreateComment = ({ bookId }) => {
+  const { mutate, error, isError, isMutating } = useUploadComment();
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
+  const commentRef = useRef();
+
   const onMouseEnter = (index) => {
     setHoverRating(index);
   };
@@ -15,9 +21,16 @@ const CreateComment = () => {
   };
   const onSaveRating = (index) => {
     setRating(index);
-    
   };
-  console.log("RATING", rating);
+  const handlePostClick = () => {
+    mutate({
+      bookId: bookId,
+      bookRating: rating,
+      comment: commentRef.current.value,
+    });
+    commentRef.current.value = "";
+  };
+  // todo!!!!!
   return (
     <div className={styles.wrapper}>
       <div className="d-flex mb-4">
@@ -36,9 +49,16 @@ const CreateComment = () => {
         })}
       </div>
       <div className={styles.commentWrapper}>
-        <input type="text" className={styles.commentInput} />
-        <Button className={styles.postBtn}>Post comment</Button>
+        <input type="text" className={styles.commentInput} ref={commentRef} />
+        <Button
+          className={styles.postBtn}
+          onClick={handlePostClick}
+          disabled={isMutating}
+        > Post comment
+        </Button>
       </div>
+      {isError && <CustomErrorMessage error={"error"} />}
+      {isMutating &&<Loader />}
     </div>
   );
 };

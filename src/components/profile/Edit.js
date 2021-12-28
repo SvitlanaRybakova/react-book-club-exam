@@ -1,8 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Form, Button, Row } from "react-bootstrap";
-import styles from "./Profile.module.css";
 import { useAuthContext } from "../../contexts/AuthContext";
-import Loader from '../loader/Loader'
+import styles from "./Profile.module.css";
 
 const Edit = () => {
   const displayNameRef = useRef();
@@ -26,23 +25,24 @@ const Edit = () => {
     setError(null);
     setMessage(null);
 
-    try {
-      setLoading(true);
-      if (displayNameRef.current.value.trim()) {
-        await setDisplayName(
-          displayNameRef.current.value);
-      }
-      if (linkToAvatarRef.current.value.trim()) {
+    if (
+      displayNameRef.current.value.trim() ||
+      linkToAvatarRef.current.value.trim()
+    ) {
+      try {
+        setLoading(true);
+        await setDisplayName(displayNameRef.current.value);
         await setLinkUrl(linkToAvatarRef.current.value);
+
+        setMessage("Profile successfully updated");
+        setLoading(false);
+      } catch (e) {
+        // setError("Error updating profile. Try logging out and in again.");
+        setError(e.message);
+        setLoading(false);
       }
-      setMessage("Profile successfully updated");
-      setLoading(false);
-    } catch (e) {
-      // setError("Error updating profile. Try logging out and in again.");
-      setError(e.message);
-      console.log(e.message);
-      setLoading(false);
-    }
+    }else{ setError("Please, enter at the one field at least");}
+
   };
   return (
     <Row>
@@ -50,13 +50,13 @@ const Edit = () => {
       <Form onSubmit={handleSubmit}>
         <Form.Control
           type="text"
-          placeholder={currentUser.displayName ? currentUser.displayName :  "Username"}
+          placeholder="Username"
           className={styles.profileInput}
           ref={displayNameRef}
         />
         <Form.Control
           type="text"
-          placeholder={currentUser.photoURL ? currentUser.photoURL : "URL link to avatar"}
+          placeholder="URL link to avatar"
           className={styles.profileInput}
           ref={linkToAvatarRef}
         />
@@ -64,7 +64,6 @@ const Edit = () => {
         <div className={styles.message}>
           {error && <span className="text-danger">{error}</span>}
           {message && <span className="text-success">{message}</span>}
-          {loading && <Loader />}
         </div>
         <Button className={styles.saveBtn} type="submit">
           {" "}

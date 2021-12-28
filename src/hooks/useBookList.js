@@ -1,6 +1,5 @@
-import { useEffect } from "react";
 import { useFirestoreQueryData } from "@react-query-firebase/firestore";
-import { collection, query, where, orderBy, limit } from "firebase/firestore";
+import { collection, query, where, orderBy } from "firebase/firestore";
 import { db } from "../firebase";
 import { useAuthContext } from "../contexts/AuthContext";
 

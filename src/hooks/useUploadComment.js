@@ -3,16 +3,14 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { useAuthContext } from "../contexts/AuthContext";
 import { db } from "../firebase";
 
-const useUploadBookToList = () => {
+const useUploadComment = () => {
   const [error, setError] = useState(null);
   const [isError, setIsError] = useState(null);
   const [isMutating, setIsMutating] = useState(null);
   const [isSuccess, setIsSuccess] = useState(null);
 
   const { currentUser } = useAuthContext();
-
-  const mutate = async (book) => {
-    console.log(book);
+  const mutate = async ({ bookId, bookRating, comment }) => {
     // reset internal state
     setError(null);
     setIsError(null);
@@ -20,17 +18,17 @@ const useUploadBookToList = () => {
     setIsMutating(true);
 
     try {
-      // create reference to db-collection 'bookList'
-      const collectionRef = collection(db, `bookList`);
+      // create reference to db-collection 'comments'
+      const collectionRef = collection(db, `comments`);
 
-      // create document in db 
       await addDoc(collectionRef, {
         created: serverTimestamp(),
-        title: book.title,
-        image: book.image,
-        author: book.author,
         user: currentUser.uid,
-        apiID: book.apiId,
+        userPhoto: currentUser.photoURL,
+        userName: currentUser.displayName,
+        bookId,
+        bookRating,
+        comment,
       });
 
       setIsSuccess(true);
@@ -45,4 +43,4 @@ const useUploadBookToList = () => {
   return { error, isError, isMutating, isSuccess, mutate };
 };
 
-export default useUploadBookToList;
+export default useUploadComment;
