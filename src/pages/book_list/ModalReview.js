@@ -3,8 +3,9 @@ import { Modal} from "react-bootstrap";
 import CreateComment from '../../components/create_comment/CreateComment'
 import styles from './BookList.module.css'
 
-const ModalReview = ({show, setShow}) => {
+const ModalReview = ({show, setShow, bookId}) => {
   const handleClose = () => setShow(false);
+
   return (
     <Modal show={show} onHide={handleClose} animation={false}>
       <Modal.Header closeButton>
@@ -13,7 +14,7 @@ const ModalReview = ({show, setShow}) => {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <CreateComment />
+        <CreateComment bookId={bookId} handleClose={handleClose}/>
       </Modal.Body>
       <Modal.Footer>
         <div

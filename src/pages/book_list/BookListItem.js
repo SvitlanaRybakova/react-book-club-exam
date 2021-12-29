@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Row, Col } from "react-bootstrap";
 import { AiOutlineFileDone } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -6,12 +6,14 @@ import { Link } from "react-router-dom";
 import Img from "../../components/image/Image";
 import noImg from "../../assets/images/noImg.png";
 import useBookDeleteFromList from "../../hooks/useBookDeleteFromList";
+import ModalReview from "./ModalReview";
 
-const BookListItem = ({ setShow, book }) => {
+const BookListItem = ({ book }) => {
+  const [show, setShow] = useState(false);
+
   const handleShow = () => setShow(true);
-
   const { error, isError, mutate } = useBookDeleteFromList(book);
-  console.log(book);
+
   if (isError) {
     console.log("The book has not been deleted", error);
   }
@@ -50,6 +52,7 @@ const BookListItem = ({ setShow, book }) => {
         </Col>
       </Row>
       <hr />
+      <ModalReview show={show} setShow={setShow} bookId={book.apiID} />
     </>
   );
 };
