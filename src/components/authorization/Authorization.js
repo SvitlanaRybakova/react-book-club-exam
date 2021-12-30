@@ -5,7 +5,7 @@ import { useAuthContext } from "../../contexts/AuthContext";
 import styles from "./Authorization.module.css";
 
 const Authorization = () => {
-  const { login, signup, resetPassword } = useAuthContext();
+  const { login, signup } = useAuthContext();
   const emailRef = useRef();
   const passwordRef = useRef();
   const [error, setError] = useState(null);
@@ -34,8 +34,6 @@ const Authorization = () => {
         setError(e.message);
         setLoading(false);
       }
-      // emailRef.current.value = "";
-      // passwordRef.current.value = "";
     } else {
       setError("Please, enter all fields");
     }
@@ -78,7 +76,6 @@ const Authorization = () => {
           role="button"
           className={styles.signupBtn}
         >
-          {" "}
           SIGN UP
         </div>
       </Form>

@@ -12,7 +12,6 @@ const useUploadBookToList = () => {
   const { currentUser } = useAuthContext();
 
   const mutate = async (book) => {
-    console.log(book);
     // reset internal state
     setError(null);
     setIsError(null);

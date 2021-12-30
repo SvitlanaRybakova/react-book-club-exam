@@ -10,7 +10,6 @@ const Edit = () => {
   const { currentUser, setDisplayName, setLinkUrl } = useAuthContext();
 
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(null);
   console.log(currentUser);
 
@@ -30,16 +29,16 @@ const Edit = () => {
       linkToAvatarRef.current.value.trim()
     ) {
       try {
-        setLoading(true);
+       
         await setDisplayName(displayNameRef.current.value);
         await setLinkUrl(linkToAvatarRef.current.value);
 
         setMessage("Profile successfully updated");
-        setLoading(false);
+       
       } catch (e) {
         // setError("Error updating profile. Try logging out and in again.");
         setError(e.message);
-        setLoading(false);
+   
       }
     }else{ setError("Please, enter at the one field at least");}
 
@@ -66,8 +65,7 @@ const Edit = () => {
           {message && <span className="text-success">{message}</span>}
         </div>
         <Button className={styles.saveBtn} type="submit">
-          {" "}
-          SAVE{" "}
+          SAVE
         </Button>
       </Form>
     </Row>

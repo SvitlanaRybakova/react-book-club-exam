@@ -24,7 +24,7 @@ const AddToListBtn = ({ bookInfo, id }) => {
     }
   }, [dataQuery.data]);
 
-  const [book, setBook] = useState({
+  const [book] = useState({
     title: bookInfo.title,
     author: bookInfo.authors ? bookInfo.authors[0] : "",
     image: bookInfo.imageLinks?.smallThumbnail ? bookInfo.imageLinks.smallThumbnail : null,

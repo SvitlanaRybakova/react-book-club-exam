@@ -32,7 +32,7 @@ const ResetPassword = () => {
 
   return (
     <>
-      <Row>
+      <Row className="my-3">
         <Col md={{ span: 6, offset: 3 }}>
           <Card className={styles.wrapper}>
             <Card.Body>

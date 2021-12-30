@@ -5,8 +5,6 @@ import {
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
-  updateEmail,
-  updatePassword,
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../firebase";
