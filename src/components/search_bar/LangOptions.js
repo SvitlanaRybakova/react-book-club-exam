@@ -10,6 +10,7 @@ const LangOptions = () => {
     setQuery((prevState) => ({
       ...prevState,
       lang: e.target.value,
+      popular: false,
     }));
   };
   return (

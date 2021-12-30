@@ -63,6 +63,7 @@ const GenreOptions = () => {
     setQuery((prevState) => ({
       ...prevState,
       genre: e.target.innerText,
+      popular: false,
     }));
   };
   // todo implement this function

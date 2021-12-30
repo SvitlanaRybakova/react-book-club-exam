@@ -12,13 +12,13 @@ const PopularOption = () => {
       popular: !prevState.popular,
     }));
   };
-  
+
   return (
     <Col sm={3} className="py-3">
       <label className={styles.containerCheckbox}>
         <input
           type="checkbox"
-          // checked={checked}
+          checked={query.popular}
           onChange={handleChange}
         />
         Popular
