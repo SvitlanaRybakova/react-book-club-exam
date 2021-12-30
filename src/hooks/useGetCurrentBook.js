@@ -9,7 +9,7 @@ const useGetCurrentBook = (bookId) => {
   const [firebaseBookUsers, setFirebaseBookUsers] = useState([]);
   const [firebaseTotalVoutes, setFirebaseTotalVoutes] = useState(null);
   const [firebaseRatingSum, setFirebaseRatingSum] = useState(null);
-
+  const [firebaseRating, setFirebaseRating] = useState(null);
   useEffect(() => {
     const ref = collection(db, "rating");
 
@@ -29,6 +29,7 @@ const useGetCurrentBook = (bookId) => {
           setFirebaseBookUsers([...book.users]);
           setFirebaseTotalVoutes(book.totalVoutes);
           setFirebaseRatingSum(book.ratingSum);
+          setFirebaseRating(book.rating);
           book.users.map((user) => {
             setFirebaseUserId(user.user_id);
             setFirebaseUserRate(user.userRate);
@@ -47,6 +48,7 @@ const useGetCurrentBook = (bookId) => {
     firebaseBookUsers,
     firebaseTotalVoutes,
     firebaseRatingSum,
+    firebaseRating,
   };
 };
 

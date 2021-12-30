@@ -52,10 +52,9 @@ const useUploadComment = (bookId) => {
       updateDoc(bookDocRef, {
         users: [...firebaseBookUsers],
         ratingSum: firebaseRatingSum - savedPrevRating + bookRating,
-        ratingInPercent:
+        rating:
           (firebaseRatingSum - savedPrevRating + bookRating) /
-          firebaseTotalVoutes /
-          10,
+          firebaseTotalVoutes,
       });
 
       // ***  book exists, but no review of current user ***
@@ -65,8 +64,8 @@ const useUploadComment = (bookId) => {
           users: arrayUnion({ user_id: currentUser.uid, userRate: bookRating }),
           totalVoutes: firebaseTotalVoutes + 1,
           ratingSum: firebaseRatingSum + bookRating,
-          ratingInPercent:
-            (firebaseRatingSum + bookRating) / (firebaseTotalVoutes + 1) / 10,
+          rating:
+            (firebaseRatingSum + bookRating) / (firebaseTotalVoutes + 1),
         });
       }
 
@@ -75,10 +74,9 @@ const useUploadComment = (bookId) => {
       try {
         // create reference to db-collection 'rating'
         const bookCollectionRef = collection(db, `rating`);
-        
         await addDoc(bookCollectionRef, {
           image,
-          ratingInPercent: bookRating / 10,
+          rating: bookRating,
           ratingSum: bookRating,
           title,
           bookId,

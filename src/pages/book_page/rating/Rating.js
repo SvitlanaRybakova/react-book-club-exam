@@ -1,24 +1,33 @@
 import React from "react";
+import useGetCurrentBook from "../../../hooks/useGetCurrentBook";
 import styles from "./Rating.module.css";
 
 // { voteAverage, voteCount }
-const Rating = () => {
+const Rating = ({ bookId }) => {
+  const {
+    firebaseRating,
+    firebaseTotalVoutes,
+    firebaseRatingSum,
+  } = useGetCurrentBook(bookId);
+  console.log(firebaseTotalVoutes, firebaseRatingSum);
   return (
     <div className={styles.rating}>
       <div className={styles.ratingCounter}>
-        {/* {Math.floor((voteAverage * 100) / 10)}% */}
-        7
+        {Math.floor(firebaseRating)}
       </div>
       <div className={styles.ratingDescription}>
         <h3 className={styles.ratingTitle}>Viewer rating</h3>
         <span className={styles.ratingText}>
-          Average rating:{" "}
-          {/* <strong className={styles.ratingTextBold}>{voteAverage}/10</strong> */}
-          <strong className={styles.ratingTextBold}>7/10</strong>
+          Average rating:
+          <strong className={styles.ratingTextBold}>
+            {firebaseTotalVoutes && firebaseRatingSum
+              ? firebaseRatingSum / firebaseTotalVoutes
+              : 0}
+          </strong>
         </span>
         <span className={styles.ratingText}>
-          {/* Total votes: <strong clas={styles.ratingTextBold}>{voteCount}</strong> */}
-          Total votes: <strong clas={styles.ratingTextBold}>10</strong>
+          Total votes:
+          <strong className={styles.ratingTextBold}>{firebaseTotalVoutes? firebaseTotalVoutes : 0}</strong>
         </span>
       </div>
     </div>

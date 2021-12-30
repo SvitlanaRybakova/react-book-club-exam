@@ -66,7 +66,7 @@ const { currentUser } = useAuthContext();
           </Row>
           <Row className="mt-5">
             <Col>
-              <Rating />
+              <Rating bookId={id}/>
             </Col>
           </Row>
           <Row className="mt-5">
