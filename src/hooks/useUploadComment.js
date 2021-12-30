@@ -1,21 +1,109 @@
 import { useState } from "react";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  serverTimestamp,
+  doc,
+  updateDoc,
+  arrayUnion,
+} from "firebase/firestore";
 import { useAuthContext } from "../contexts/AuthContext";
 import { db } from "../firebase";
+import useGetCurrentBook from "./useGetCurrentBook";
 
-const useUploadComment = () => {
+const useUploadComment = (bookId) => {
   const [error, setError] = useState(null);
   const [isError, setIsError] = useState(null);
   const [isMutating, setIsMutating] = useState(null);
   const [isSuccess, setIsSuccess] = useState(null);
-
+  const {
+    firebaseBookId,
+    firebaseUserId,
+    firebaseUserRate,
+    firebaseBookUsers,
+    firebaseTotalVoutes,
+    firebaseRatingSum,
+  } = useGetCurrentBook(bookId);
+ 
   const { currentUser } = useAuthContext();
-  const mutate = async ({ bookId, bookRating, comment }) => {
+
+  
+
+  const setRating = async (bookRating, bookId, image, title) => {
+    // ***  book exists in db ***
+    if (firebaseBookId) {
+      let savedPrevRating;
+      // checks if there is already a rating from this current user (iterates the copy of db array for changing it, cose can't update array of onjects directly in firebase)
+      firebaseBookUsers.map((user) => {
+        if (user.user_id === currentUser.uid) {
+          // checks the users previous rating
+          if (firebaseUserRate !== bookRating) {
+            // saves the previous rating so that it can be taken away before adding a new one
+            savedPrevRating = firebaseUserRate;
+            // changes the userRate property
+            user.userRate = bookRating;
+          }
+        }
+      });
+
+      // updates users array and others fields in firebase
+      const bookDocRef = doc(db, "rating", firebaseBookId);
+
+      updateDoc(bookDocRef, {
+        users: [...firebaseBookUsers],
+        ratingSum: firebaseRatingSum - savedPrevRating + bookRating,
+        ratingInPercent:
+          (firebaseRatingSum - savedPrevRating + bookRating) /
+          firebaseTotalVoutes /
+          10,
+      });
+
+      // ***  book exists, but no review of current user ***
+      if (firebaseUserId !== currentUser.uid) {
+        const bookDocRef = doc(db, "rating", firebaseBookId);
+        updateDoc(bookDocRef, {
+          users: arrayUnion({ user_id: currentUser.uid, userRate: bookRating }),
+          totalVoutes: firebaseTotalVoutes + 1,
+          ratingSum: firebaseRatingSum + bookRating,
+          ratingInPercent:
+            (firebaseRatingSum + bookRating) / (firebaseTotalVoutes + 1) / 10,
+        });
+      }
+
+      // *** book does't exist ***
+    } else {
+      try {
+        // create reference to db-collection 'rating'
+        const bookCollectionRef = collection(db, `rating`);
+        
+        await addDoc(bookCollectionRef, {
+          image,
+          ratingInPercent: bookRating / 10,
+          ratingSum: bookRating,
+          title,
+          bookId,
+          totalVoutes: 1,
+          users: [
+            {
+              user_id: currentUser.uid,
+              userRate: bookRating,
+            },
+          ],
+        });
+      } catch (e) {
+        console.log(e.message);
+      }
+    }
+  };
+
+  const mutate = async ({ bookId, bookRating, comment, image, title }) => {
     // reset internal state
     setError(null);
     setIsError(null);
     setIsSuccess(null);
     setIsMutating(true);
+
+    setRating(bookRating, bookId, image, title);
 
     try {
       // create reference to db-collection 'comments'

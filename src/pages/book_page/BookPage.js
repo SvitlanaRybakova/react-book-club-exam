@@ -34,11 +34,15 @@ const BookPage = () => {
               <BookExtraDescription bookInfo={data?.data.volumeInfo} />
 
               {currentUser ? (
-                <CreateComment bookId={id} />
+                <CreateComment
+                  bookId={id}
+                  title={data?.data.volumeInfo.title}
+                  image={data?.data.volumeInfo.imageLinks.smallThumbnail}
+                />
               ) : (
                 <LoginWarning message={"Please log in to write a comment"} />
               )}
-              <CommentsList bookId={id}/>
+              <CommentsList bookId={id} />
             </>
           )}
         </PageLayout>

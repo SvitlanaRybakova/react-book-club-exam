@@ -7,12 +7,13 @@ import CustomErrorMessage from "../error_msg/CustomErrorMessage";
 import styles from "./CreateComment.module.css";
 import Loader from "react-spinners/BarLoader";
 
-const CreateComment = ({ bookId, handleClose }) => {
-  const { mutate, error, isError, isMutating } = useUploadComment();
+const CreateComment = ({ bookId, handleClose, image, title }) => {
+  const { mutate, error, isError, isMutating } = useUploadComment(bookId);
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
   const commentRef = useRef();
 
+  // console.log(image, title);
   const onMouseEnter = (index) => {
     setHoverRating(index);
   };
@@ -27,12 +28,13 @@ const CreateComment = ({ bookId, handleClose }) => {
       bookId: bookId,
       bookRating: rating,
       comment: commentRef.current.value,
+      image,
+      title,
     });
     commentRef.current.value = "";
-    if(handleClose){
-      handleClose()
+    if (handleClose) {
+      handleClose();
     }
-    
   };
   return (
     <div className={styles.wrapper}>
@@ -57,11 +59,13 @@ const CreateComment = ({ bookId, handleClose }) => {
           className={styles.postBtn}
           onClick={handlePostClick}
           disabled={isMutating}
-        > Post comment
+        >
+          {" "}
+          Post comment
         </Button>
       </div>
       {isError && <CustomErrorMessage error={"error"} />}
-      {isMutating &&<Loader />}
+      {isMutating && <Loader />}
     </div>
   );
 };
