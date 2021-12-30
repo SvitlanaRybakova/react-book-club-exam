@@ -15,7 +15,6 @@ const Home = () => {
      coll: "rating",
    });
 
-   console.log("popular", dataQuery);
   const { query, searchTerm, setQuery, searchParams } = useSearchContext();
   const { data, error, isError, isLoading } = useQuery(
     ["home", query],

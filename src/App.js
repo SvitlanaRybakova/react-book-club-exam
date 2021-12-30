@@ -4,11 +4,12 @@ import NavbarCustom from "./components/navbar/NavbarCustom";
 import NavbarContextProvider from "./contexts/NavbarContext";
 import SearchContextProvider from "./contexts/SearchContext";
 import AuthContextProvider from "./contexts/AuthContext";
-import RequireAuth from './components/RequireAuth'
+import RequireAuth from "./components/RequireAuth";
 import HomePage from "./pages/home/Home";
 import BookPage from "./pages/book_page/BookPage";
 import BookList from "./pages/book_list/BookList";
-import ResetPassword from './pages/reset_password/ResetPassword'
+import ResetPassword from "./pages/reset_password/ResetPassword";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   return (
@@ -27,11 +28,11 @@ function App() {
                 path="/book-list"
                 element={
                   <RequireAuth redirectTo="/">
-                    <BookList /> 
+                    <BookList />
                   </RequireAuth>
                 }
               />
-              {/* <Route element={<PageNotFound />} /> */}
+              <Route path="*" element={<PageNotFound />} />
             </Routes>
           </SearchContextProvider>
         </NavbarContextProvider>
