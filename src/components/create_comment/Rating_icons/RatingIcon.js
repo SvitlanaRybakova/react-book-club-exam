@@ -1,5 +1,5 @@
-import React, {useMemo} from 'react'
-import styles from '../CreateComment.module.css';
+import React, { useMemo } from "react";
+import styles from "../CreateComment.module.css";
 
 export function StarIcon(props) {
   const { fill = "none" } = props;
@@ -37,23 +37,24 @@ const RatingIcon = (props) => {
     if (hoverRating >= index) {
       return "#FFD233";
     } else if (!hoverRating && rating >= index) {
-      return "#FFD233";;
+      return "#FFD233";
     }
     return "none";
   }, [rating, hoverRating, index]);
 
   return (
-    
-      <div
-        className={styles.starsWrapper}
-        onMouseEnter={() => onMouseEnter(index)}
-        onMouseLeave={() => onMouseLeave()}
-        onClick={() => onSaveRating(index)}
-      >
-        <StarIcon fill={fill} />
-      </div>
-    
+    <div
+      className={styles.starsWrapper}
+      onMouseEnter={() => onMouseEnter(index)}
+      onMouseLeave={() => onMouseLeave()}
+      onClick={() => onSaveRating(index)}
+    >
+      <StarIcon
+        
+        fill={fill}
+      />
+    </div>
   );
-}
+};
 
-export default RatingIcon
+export default RatingIcon;

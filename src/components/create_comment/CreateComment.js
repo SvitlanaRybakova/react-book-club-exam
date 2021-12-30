@@ -4,16 +4,17 @@ import { Button } from "react-bootstrap";
 import useUploadComment from "../../hooks/useUploadComment";
 import RatingIcon from "./Rating_icons/RatingIcon";
 import CustomErrorMessage from "../error_msg/CustomErrorMessage";
-import styles from "./CreateComment.module.css";
 import Loader from "react-spinners/BarLoader";
+import styles from "./CreateComment.module.css";
+
 
 const CreateComment = ({ bookId, handleClose, image, title }) => {
   const { mutate, error, isError, isMutating } = useUploadComment(bookId);
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(0) 
+
   const [hoverRating, setHoverRating] = useState(0);
   const commentRef = useRef();
 
-  // console.log(image, title);
   const onMouseEnter = (index) => {
     setHoverRating(index);
   };
@@ -64,7 +65,7 @@ const CreateComment = ({ bookId, handleClose, image, title }) => {
           Post comment
         </Button>
       </div>
-      {isError && <CustomErrorMessage error={"error"} />}
+      {isError && <CustomErrorMessage error={error} />}
       {isMutating && <Loader />}
     </div>
   );
