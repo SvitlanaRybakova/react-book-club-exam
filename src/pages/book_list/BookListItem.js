@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import { AiOutlineFileDone } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -10,9 +10,23 @@ import ModalReview from "./ModalReview";
 
 const BookListItem = ({ book }) => {
   const [show, setShow] = useState(false);
+  const {
+    error,
+    isError,
+    deleteBookFromList,
+    markBookAsReaded,
+  } = useBookDeleteFromList(book);
 
-  const handleShow = () => setShow(true);
-  const { error, isError, mutate } = useBookDeleteFromList(book);
+  const handleShow = () => {
+    if(!book.readed){
+     
+     
+       markBookAsReaded();
+    }
+    //  setShow(true);
+   
+  };
+  console.log(show);
 
   if (isError) {
     console.log("The book has not been deleted", error);
@@ -30,29 +44,67 @@ const BookListItem = ({ book }) => {
         </Col>
         <Col sm={5}>
           <Link to={`/books/${book.apiID}`}>
-            <b>{book.title}</b>
+            {book.readed ? (
+              <b>
+                <del>{book.title}</del>
+              </b>
+            ) : (
+              <b>{book.title}</b>
+            )}
           </Link>
           <Link to={`/books/${book.apiID}`}>
-            <p>
-              <em>{book.author}</em>
-            </p>
+            {book.readed ? (
+              <p>
+                <del>
+                  <em>{book.author}</em>
+                </del>
+              </p>
+            ) : (
+              <p>
+                <em>{book.author}</em>
+              </p>
+            )}
           </Link>
         </Col>
-        <Col sm={3}></Col>
+        <Col sm={2}></Col>
 
-        <Col sm={1} style={{ cursor: "pointer" }}>
-          <div>
-            <AiOutlineFileDone size={30} color={"green"} onClick={handleShow} />
+        <Col sm={2}>
+          <div
+            // role="button"
+            disabled={book.readed}
+          >
+            {book.readed ? (
+              <span className="text-secondary font-weight-light">
+                <em>readed</em>
+              </span>
+            ) : (
+              <AiOutlineFileDone
+                style={{ cursor: "pointer" }}
+                size={30}
+                color={"green"}
+                onClick={handleShow}
+                data-toggle="tooltip"
+                data-placement="bottom"
+                title="Mark book as readed"
+              />
+            )}
           </div>
         </Col>
         <Col sm={1} style={{ cursor: "pointer" }}>
           <div>
-            <RiDeleteBin6Line size={30} color={"gray"} onClick={mutate} />
+            <RiDeleteBin6Line
+              size={30}
+              color={"gray"}
+              onClick={deleteBookFromList}
+              data-toggle="tooltip"
+              data-placement="bottom"
+              title="Delete book"
+            />
           </div>
         </Col>
       </Row>
       <hr />
-      <ModalReview show={show} setShow={setShow} bookId={book.apiID} />
+      {/* <ModalReview show={show} setShow={setShow} bookId={book.apiID} /> */}
     </>
   );
 };

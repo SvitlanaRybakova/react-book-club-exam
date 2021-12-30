@@ -11,6 +11,7 @@ const useGetData = (params) => {
     queryRef = query(
       collection(db, params.coll),
       where("user", "==", currentUser.uid),
+      orderBy("readed"),
       orderBy("created")
     );
   }

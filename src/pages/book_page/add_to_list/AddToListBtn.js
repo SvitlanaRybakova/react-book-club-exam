@@ -29,6 +29,7 @@ const AddToListBtn = ({ bookInfo, id }) => {
     author: bookInfo.authors ? bookInfo.authors[0] : "",
     image: bookInfo.imageLinks?.smallThumbnail ? bookInfo.imageLinks.smallThumbnail : null,
     apiId: id,
+    readed: false,
   });
 
   const handleAddBookClick = () => {
