@@ -3,13 +3,16 @@ import { ListGroup, Button, Alert } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
 import styles from "./Profile.module.css";
-import useBookList from "../../hooks/useBookList.js";
-import Loader from '../loader/Loader'
-import CustomError from '../error_msg/CustomErrorMessage'
+import Loader from "../loader/Loader";
+import CustomError from "../error_msg/CustomErrorMessage";
+import useGetData from "../../hooks/useGetData";
 
 const List = () => {
   const navigate = useNavigate();
-  const { data, isError, isLoading, error } = useBookList();
+  const { data, isLoading, isError, error } = useGetData({
+    getBookList: true,
+    coll: "bookList",
+  });
 
   return (
     <>

@@ -6,19 +6,18 @@ import useLazyLoader from "../../hooks/useLazyLoader";
 
 const BooksList = ({ data }) => {
   const { limit, ammountOfClick, onLoadMore } = useLazyLoader(
-    data?.items.length
+    data.length
   );
   return (
     <>
     <div className={styles.booksListWrapper}>
-      {data?.items
-        .slice(0, limit)
+      {data.slice(0, limit)
         .map((book) => (
           <BookCard
             key={uuidv4()}
-            image={book.volumeInfo.imageLinks?.smallThumbnail}
-            title={book.volumeInfo.title}
-            id={book.id}
+            image={book.image?book.image: book.volumeInfo.imageLinks?.smallThumbnail}
+            title={book.title? book.title: book.volumeInfo.title}
+            id={book.bookId? book.bookId:book.id}
           />
         ))}
      
