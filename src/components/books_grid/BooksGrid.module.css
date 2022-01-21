@@ -2,16 +2,14 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-around;
   margin-top: 40px;
 }
 
 .cardWrapper {
   width: 10rem;
   text-align: center;
-  margin-bottom: 10px;
+  margin: 10px;
   position: relative;
-  /* display: inline-block; */
 }
 
 .cardTitle {
@@ -57,14 +55,8 @@
 
 .cardWrapper:hover .tooltiptext {
   visibility: visible;
-  /* overflow: auto; */
   opacity: 1;
 }
-
-/* .cardTitle:hover {
-  overflow: visible;
-  white-space: normal;
-} */
 
 .cardImage {
   height: 170px;

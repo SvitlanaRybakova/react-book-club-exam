@@ -1,7 +1,7 @@
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
 import BookCard from "./BookCard";
-import styles from "./BooksList.module.css";
+import styles from "./BooksGrid.module.css";
 import useLazyLoader from "../../hooks/useLazyLoader";
 
 const BooksList = ({ data }) => {

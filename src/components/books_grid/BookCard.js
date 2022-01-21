@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Image from '../image/Image'
-import styles from "./BooksList.module.css";
+import styles from "./BooksGrid.module.css";
 
 
 const BookCard = ({id, image, title }) => {

@@ -27,7 +27,9 @@ const AddToListBtn = ({ bookInfo, id }) => {
   const [book] = useState({
     title: bookInfo.title,
     author: bookInfo.authors ? bookInfo.authors[0] : "",
-    image: bookInfo.imageLinks?.smallThumbnail ? bookInfo.imageLinks.smallThumbnail : null,
+    image: bookInfo.imageLinks?.smallThumbnail
+      ? bookInfo.imageLinks.smallThumbnail
+      : null,
     apiId: id,
     readed: false,
   });
@@ -50,12 +52,18 @@ const AddToListBtn = ({ bookInfo, id }) => {
       <div role="button" onClick={handleAddBookClick} disabled={isBookAdded}>
         {isBookAdded ? (
           <div className={styles.btnContentWrapper}>
-            <TiDelete size={30} color={"red"} />{" "}
+            <div className={styles.icon}>
+              <TiDelete size={30} color={"red"} />
+            </div>
+
             <span style={{ paddingTop: "4px" }}>Book has been added</span>
           </div>
         ) : (
           <div className={styles.btnContentWrapper}>
-            <FcCheckmark size={20} /> <span>Add to my book list</span>
+            <div className={styles.icon}>
+              <FcCheckmark size={20} />
+            </div>
+            <span>Add to my book list</span>
           </div>
         )}
       </div>

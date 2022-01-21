@@ -98,7 +98,6 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .userLogo>img {
-  /* border: 1px solid var(--gray); */
   border-radius: 50%;
 }
 
@@ -133,4 +132,9 @@ button:focus {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+a:hover {
+  color: var(--orange);
+  text-decoration: underline;
 }

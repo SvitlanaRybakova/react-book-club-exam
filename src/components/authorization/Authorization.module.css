@@ -4,6 +4,11 @@
   text-align: center;
 }
 
+.container {
+  margin: 0 auto;
+  max-width: 300px;
+}
+
 .authTitle {
   font-size: 20px;
   color: var (--black);
@@ -31,7 +36,6 @@
   background-color: var(--orange) !important;
   color: var(--white);
   width: 100%;
-  border: none !important;
   margin-bottom: 10px;
 }
 

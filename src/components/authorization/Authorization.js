@@ -41,44 +41,46 @@ const Authorization = () => {
 
   return (
     <div className={styles.authWrapper}>
-      <h2 className={styles.authTitle}> Authorization</h2>
-      <Form>
-        <Form.Control
-          type="email"
-          placeholder="Email"
-          className={styles.authInput}
-          ref={emailRef}
-          required
-        />
-        <Form.Control
-          type="password"
-          placeholder="Password"
-          className={styles.authInput}
-          ref={passwordRef}
-          required
-        />
-        <div className={styles.error}>
-          {error && <span className="text-danger">{error}</span>}
-        </div>
+      <div className={styles.container}>
+        <h2 className={styles.authTitle}> Authorization</h2>
+        <Form>
+          <Form.Control
+            type="email"
+            placeholder="Email"
+            className={styles.authInput}
+            ref={emailRef}
+            required
+          />
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            className={styles.authInput}
+            ref={passwordRef}
+            required
+          />
+          <div className={styles.error}>
+            {error && <span className="text-danger">{error}</span>}
+          </div>
 
-        <div className={styles.forgotPassword}>
-          <Link to="/reset-password">Forgot Password?</Link>
-        </div>
-        <Button
-          disabled={loading}
-          onClick={(e) => handleClick(e, "login")}
-          className={styles.loginBtn}
-        >
-          LOG IN
-        </Button>
-        <div
-          onClick={(e) => handleClick(e, "signup")}
-          role="button"
-          className={styles.signupBtn}
-        >
-          SIGN UP
-        </div>
-      </Form>
+          <div className={styles.forgotPassword}>
+            <Link to="/reset-password">Forgot Password?</Link>
+          </div>
+          <Button
+            disabled={loading}
+            onClick={(e) => handleClick(e, "login")}
+            className={styles.loginBtn}
+          >
+            LOG IN
+          </Button>
+          <div
+            onClick={(e) => handleClick(e, "signup")}
+            role="button"
+            className={styles.signupBtn}
+          >
+            SIGN UP
+          </div>
+        </Form>
+      </div>
     </div>
   );
 };

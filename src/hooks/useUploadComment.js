@@ -69,7 +69,7 @@ const useUploadComment = (bookId) => {
         });
       }
 
-      // *** book does't exist ***
+      // *** book doesn't exist ***
     } else {
       try {
         // create reference to db-collection 'rating'

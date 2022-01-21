@@ -20,6 +20,7 @@ const CommentsList = ({bookId}) => {
       {isLoading && <Loader />}
       {isError && <CustomErrorMessage error={error} />}
       {data && data.map(comment => <CommentItem comment={comment} key={uuidv4()}/>)}
+      {data?.length === 0 && <span> <em>No comments yet</em> </span>}
     </Row>
   );
 };

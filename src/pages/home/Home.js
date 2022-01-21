@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useQuery } from "react-query";
 import { useSearchContext } from "../../contexts/SearchContext";
 import useGetData from '../../hooks/useGetData'
-import BooksList from "../../components/books_list/BooksList";
+import BooksList from "../../components/books_grid/BooksGrid";
 import SearchBar from "../../components/search_bar/SearchBar";
 import PageLayout from "../../components/layout/PageLayout";
 import CustomErrorMessage from "../../components/error_msg/CustomErrorMessage";
