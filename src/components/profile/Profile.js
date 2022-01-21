@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Row, Col, Card } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { BiEdit } from "react-icons/bi";
 import { IoLogOutOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
