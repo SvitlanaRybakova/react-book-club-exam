@@ -29,7 +29,10 @@ const SearchInput = () => {
           src={cross}
           alt="clear input"
           className={styles.cross}
-          onClick={() => setSearchParams({ text: "" })}
+          onClick={(e) => {
+            setSearchParams({ text: "" });
+            handleClick(e);
+          }}
         />
       </div>
     </div>

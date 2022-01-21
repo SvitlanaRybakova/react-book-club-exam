@@ -34,14 +34,13 @@ const Home = () => {
     //     searchText: preparedQuery,
     //   }));
     // }, [searchTerm]);
-console.log('data', data)
-console.log("query.popular", query.popular);
+
     return (
       <PageLayout>
         <SearchBar />
         {isError && <CustomErrorMessage error={error} />}
         {isLoading && <Loader />}
-        {query.popular && <BooksList data={dataQuery.data} />}
+        {query?.popular && <BooksList data={dataQuery.data} />}
         {(data?.totalItems > 0 && !query.popular) && (
           <BooksList data={data.items} />
         )}
