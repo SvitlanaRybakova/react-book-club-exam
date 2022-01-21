@@ -20,33 +20,38 @@ const Home = () => {
     ["home", query],
     () => getBooks(query)
   );
+  
 
-  // useEffect(() => {
-  //   const preparedQuery = searchTerm
-  //     .trim()
-  //     .toLocaleLowerCase()
-  //     .split(" ")
-  //     .join("+");
-  //   setQuery((prevState) => ({
-  //     ...prevState,
-  //     searchText: preparedQuery,
-  //   }));
-  // }, [searchTerm]);
-
-  return (
-    <PageLayout>
-      <SearchBar />
-      {isError && <CustomErrorMessage error={error} />}
-      {isLoading && <Loader />}
-      {query.popular && <BooksList data={dataQuery.data} />}
-      {data?.totalItems > 0 && <BooksList data={data.items} />}
-      {data?.totalItems === 0 && (
-        <h3 className="text-center my-5 font-italic text-secondary">
-          Sorry, no result
-        </h3>
-      )}
-    </PageLayout>
-  );
+  
+    // useEffect(() => {
+    //   const preparedQuery = searchTerm
+    //     .trim()
+    //     .toLocaleLowerCase()
+    //     .split(" ")
+    //     .join("+");
+    //   setQuery((prevState) => ({
+    //     ...prevState,
+    //     searchText: preparedQuery,
+    //   }));
+    // }, [searchTerm]);
+console.log('data', data)
+console.log("query.popular", query.popular);
+    return (
+      <PageLayout>
+        <SearchBar />
+        {isError && <CustomErrorMessage error={error} />}
+        {isLoading && <Loader />}
+        {query.popular && <BooksList data={dataQuery.data} />}
+        {(data?.totalItems > 0 && !query.popular) && (
+          <BooksList data={data.items} />
+        )}
+        {data?.totalItems === 0 && (
+          <h3 className="text-center my-5 font-italic text-secondary">
+            Sorry, no result
+          </h3>
+        )}
+      </PageLayout>
+    );
 };
 
 export default Home;
