@@ -33,7 +33,7 @@ const SuggestionsListComponent = ({
 };
 
 const GenreOptions = () => {
-  const { setQuery } = useSearchContext();
+  const { setGenre } = useSearchContext();
   const [input, setInput] = useState("");
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(0);
@@ -60,11 +60,7 @@ const GenreOptions = () => {
     setActiveSuggestionIndex(0);
     setShowSuggestions(false);
 
-    setQuery((prevState) => ({
-      ...prevState,
-      genre: e.target.innerText,
-      popular: false,
-    }));
+    setGenre(e.target.innerText);
   };
   // todo implement this function
   const onKeyDown = (e) => {
@@ -85,7 +81,10 @@ const GenreOptions = () => {
           src={cross}
           alt="clear input"
           className={styles.cross}
-          onClick={() => setInput("")}
+          onClick={() => {
+            setInput("");
+            setGenre("");
+          }}
         />
       </div>
 

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useQuery } from "react-query";
 import { useSearchContext } from "../../contexts/SearchContext";
-import useGetData from '../../hooks/useGetData'
+import useGetData from "../../hooks/useGetData";
 import BooksList from "../../components/books_grid/BooksGrid";
 import SearchBar from "../../components/search_bar/SearchBar";
 import PageLayout from "../../components/layout/PageLayout";
@@ -10,47 +10,37 @@ import Loader from "../../components/loader/Loader";
 import { getBooks } from "../../services/GoogleBooksAPI";
 
 const Home = () => {
-   const dataQuery = useGetData({
-     getPopularBook: true,
-     coll: "rating",
-   });
+  const dataQuery = useGetData({
+    getPopularBook: true,
+    coll: "rating",
+  });
 
-  const { query, searchTerm, setQuery, searchParams } = useSearchContext();
+  const { getSearchQuery } = useSearchContext();
+  const searchText = getSearchQuery().searchText;
+  const genre = getSearchQuery().genre;
+  const lang = getSearchQuery().lang;
+
+  console.log(searchText, genre, typeof genre, lang);
+
   const { data, error, isError, isLoading } = useQuery(
-    ["home", query],
-    () => getBooks(query)
+    ["home", searchText, genre, lang],
+    () => getBooks(getSearchQuery)
   );
-  
 
-  
-    // useEffect(() => {
-    //   const preparedQuery = searchTerm
-    //     .trim()
-    //     .toLocaleLowerCase()
-    //     .split(" ")
-    //     .join("+");
-    //   setQuery((prevState) => ({
-    //     ...prevState,
-    //     searchText: preparedQuery,
-    //   }));
-    // }, [searchTerm]);
-
-    return (
-      <PageLayout>
-        <SearchBar />
-        {isError && <CustomErrorMessage error={error} />}
-        {isLoading && <Loader />}
-        {query?.popular && <BooksList data={dataQuery.data} />}
-        {(data?.totalItems > 0 && !query.popular) && (
-          <BooksList data={data.items} />
-        )}
-        {data?.totalItems === 0 && (
-          <h3 className="text-center my-5 font-italic text-secondary">
-            Sorry, no result
-          </h3>
-        )}
-      </PageLayout>
-    );
+  return (
+    <PageLayout>
+      <SearchBar />
+      {isError && <CustomErrorMessage error={error} />}
+      {isLoading && <Loader />}
+      {/* {getSearchQuery.get("popular") && <BooksList data={dataQuery.data} />} */}
+      {data?.totalItems > 0 && <BooksList data={data.items} />}
+      {data?.totalItems === 0 && (
+        <h3 className="text-center my-5 font-italic text-secondary">
+          Sorry, no result
+        </h3>
+      )}
+    </PageLayout>
+  );
 };
 
 export default Home;

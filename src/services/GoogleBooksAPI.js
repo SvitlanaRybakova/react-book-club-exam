@@ -3,24 +3,28 @@ import axios from "axios";
 axios.defaults.baseURL = "https://www.googleapis.com/books/v1/";
 //www.googleapis.com/books/v1/volumes?q=Harry&subject:comedy+romance+fiction&printType=books&maxResults=40
 export const getBooks = async (query) => {
+  const searchText = query().searchText;
+  const genre = query().genre;
+  const lang = query().lang;
+  console.log(searchText);
   try {
-    if (query.genre && query.searchText) {
+    if (genre && searchText) {
       const result = await axios.get(
-        `volumes?q=${query.searchText}+subject:${query.genre}&orderBy=newest&maxResults=40&langRestrict=${query.lang}`
+        `volumes?q=${searchText}+subject:${genre}&orderBy=newest&maxResults=40&langRestrict=${lang}`
       );
       return result.data;
     }
 
-    if (query.searchText && !query.genre) {
+    if (searchText && !genre) {
       const result = await axios.get(
-        `volumes?q=intitle:${query.searchText}&inauthor:${query.searchText}&orderBy=newest&maxResults=40&langRestrict=${query.lang}`
+        `volumes?q=intitle:${searchText}&inauthor:${searchText}&orderBy=newest&maxResults=40&langRestrict=${lang}`
       );
       return result.data;
     }
 
-    if(query.genre && !query.searchText){
+    if(genre && !searchText){
        const result = await axios.get(
-         `volumes?q=subject:${query.genre}&orderBy=newest&maxResults=40&langRestrict=${query.lang}`
+         `volumes?q=subject:${genre}&orderBy=newest&maxResults=40&langRestrict=${lang}`
        );
        return result.data;
     }

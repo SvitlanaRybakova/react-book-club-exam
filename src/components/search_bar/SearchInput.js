@@ -4,14 +4,14 @@ import cross from "../../assets/images/cross.png";
 import { useSearchContext } from "../../contexts/SearchContext";
 
 const SearchInput = () => {
-  const { searchTerm, setSearchParams, setQuery } = useSearchContext();
+  const {
+    searchTerm,
+    setSearchParams,
+    setSearchText,
+  } = useSearchContext();
 
   const handleClick = (e) => {
-    setQuery((prevState) => ({
-      ...prevState,
-      searchText: e.target.value,
-      popular: false,
-    }));
+     setSearchText(e.target.value);
   };
 
   return (

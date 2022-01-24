@@ -4,13 +4,10 @@ import styles from "./SearchBar.module.css";
 import { useSearchContext } from "../../contexts/SearchContext";
 
 const PopularOption = () => {
-   const { query, setQuery } = useSearchContext();
+   const { togglePopular, getSearchQuery } = useSearchContext();
 
   const handleChange = () => {
-    setQuery((prevState) => ({
-      ...prevState,
-      popular: !prevState.popular,
-    }));
+    togglePopular()
   };
 
   return (
@@ -18,7 +15,7 @@ const PopularOption = () => {
       <label className={styles.containerCheckbox}>
         <input
           type="checkbox"
-          checked={query.popular}
+          // checked={getSearchQuery().popular}
           onChange={handleChange}
         />
         Popular

@@ -13,50 +13,81 @@ const SearchContextProvider = ({ children }) => {
 
   const location = useLocation();
 
-  const [query, setQuery] = useState({
-    searchText: "",
-    lang: "en",
-    genre: null,
-    popular: false,
-  });
-
-  // changes the browser URL every time when the query has been changed(date copy from state to URL)
-  useEffect(() => {
-    handleUrl();
-  }, [query]);
+  // const [query, setQuery] = useState({
+  //   searchText: "",
+  //   lang: "en",
+  //   genre: null,
+  //   popular: false,
+  // });
 
   // triggers state when URL changes by clicking browser back btn
   // (date copy from URL to state)
   // useEffect(() => {
-  //   const obj = Object.fromEntries(new URLSearchParams(location.search));
-  //   setQuery({ ...obj });
-  // }, [searchParams]);
+  //   window.onpopstate = (e) => {
+  //     const url = window.location.href;
+  //     const queryString = url
+  //       ? url.split("?")[1]
+  //       : window.location.search.slice(1);
+  //     const obj = Object.fromEntries(new URLSearchParams(queryString));
+  //     console.log(obj);
 
-  const handleUrl = () => {
-    const params = {};
-    if (query.searchText?.length) {
-      params.searchText = query.searchText;
-    }
-    if (query.lang?.length) {
-      params.lang = query.lang;
-    }
-    if (query.genre) {
-      params.genre = query.genre;
-    }
+  //     const objCopy = { ...query };
+  //     if (obj.searchText.length > 0) {
+  //       objCopy.searchText = obj.searchText;
+  //     }
+  //     console.log(objCopy);
+  //     setQuery(objCopy);
+  //   };
+  // }, []);
 
-    if (query.popular) {
-      params.popular = query.popular;
-    }
-    setSearchParams(params);
+  const setSearchText = (value) => {
+    const searchParamsCopy = { ...searchParams };
+    searchParamsCopy.searchText = value;
+    setSearchParams(searchParamsCopy);
+    console.log(
+      "searchParams",
+      searchParams.get("lang"),
+      searchParams.get("searchText")
+    );
+  };
+
+  const getSearchQuery = () => {
+    return {
+      searchText: searchParams.get("searchText") || "",
+      lang: searchParams.get("lang") || "en",
+      popular: searchParams.get("popular") || false,
+      genre: searchParams.get("genre") || "",
+    };
+  };
+
+  const setLangOption = (value) => {
+    const searchQuery = getSearchQuery();
+    searchQuery.lang = value;
+    setSearchParams(searchQuery);
+  };
+
+  const setGenre = (value) => {
+    const searchQuery = getSearchQuery();
+    searchQuery.genre = value;
+    setSearchParams(searchQuery);
+  };
+
+  const togglePopular = () => {
+    const searchQuery = getSearchQuery();
+    searchQuery.popular =
+      searchQuery.popular != null ? !searchQuery.popular : true;
+    setSearchParams(searchQuery);
   };
 
   const values = {
-    query,
-    setQuery,
     setSearchParams,
     searchTerm,
-    handleUrl,
+    setSearchText,
     searchParams,
+    setLangOption,
+    setGenre,
+    togglePopular,
+    getSearchQuery,
   };
 
   return (

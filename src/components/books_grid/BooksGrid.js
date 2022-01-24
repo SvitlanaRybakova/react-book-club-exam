@@ -9,7 +9,7 @@ const BooksGrid = ({ data }) => {
   return (
     <>
       <div className={styles.booksListWrapper}>
-        {data.slice(0, limit).map((book) => (
+        {data?.slice(0, limit).map((book) => (
           <BookCard
             key={uuidv4()}
             image={
