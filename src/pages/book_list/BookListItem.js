@@ -6,8 +6,9 @@ import { Link } from "react-router-dom";
 import Img from "../../components/image/Image";
 import noImg from "../../assets/images/noImg.png";
 import useBookDeleteFromList from "../../hooks/useBookDeleteFromList";
+import ModalReview from "../../pages/book_list/ModalReview";
 
-const BookListItem = ({ book }) => {
+const BookListItem = ({ book, handleShow, show, handleClose }) => {
   const {
     error,
     isError,
@@ -15,14 +16,11 @@ const BookListItem = ({ book }) => {
     markBookAsReaded,
   } = useBookDeleteFromList(book);
 
-  const handleShow = () => {
-    if(!book.readed){
-     
-     
-       markBookAsReaded();
+  const handleShowClick = async() => {
+    if (!book.readed) {
+      await markBookAsReaded();
     }
-    //  setShow(true);
-   
+    handleShow();
   };
 
   if (isError) {
@@ -67,7 +65,6 @@ const BookListItem = ({ book }) => {
 
         <Col sm={2}>
           <div
-            // role="button"
             disabled={book.readed}
           >
             {book.readed ? (
@@ -79,7 +76,7 @@ const BookListItem = ({ book }) => {
                 style={{ cursor: "pointer" }}
                 size={30}
                 color={"green"}
-                onClick={handleShow}
+                onClick={handleShowClick}
                 data-toggle="tooltip"
                 data-placement="bottom"
                 title="Mark book as readed"
@@ -101,6 +98,7 @@ const BookListItem = ({ book }) => {
         </Col>
       </Row>
       <hr />
+      <ModalReview show={show} handleClose={handleClose} bookId={book.apiID}/>
     </>
   );
 };

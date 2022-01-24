@@ -7,10 +7,9 @@ import CustomErrorMessage from "../error_msg/CustomErrorMessage";
 import Loader from "react-spinners/BarLoader";
 import styles from "./CreateComment.module.css";
 
-
-const CreateComment = ({ bookId, handleClose, image, title }) => {
+const CreateComment = ({ bookId, image, title }) => {
   const { mutate, error, isError, isMutating } = useUploadComment(bookId);
-  const [rating, setRating] = useState(0) 
+  const [rating, setRating] = useState(0);
 
   const [hoverRating, setHoverRating] = useState(0);
   const commentRef = useRef();
@@ -24,6 +23,7 @@ const CreateComment = ({ bookId, handleClose, image, title }) => {
   const onSaveRating = (index) => {
     setRating(index);
   };
+
   const handlePostClick = () => {
     mutate({
       bookId: bookId,
@@ -33,10 +33,8 @@ const CreateComment = ({ bookId, handleClose, image, title }) => {
       title,
     });
     commentRef.current.value = "";
-    if (handleClose) {
-      handleClose();
-    }
   };
+
   return (
     <div className={styles.wrapper}>
       <div className="d-flex mb-4">
