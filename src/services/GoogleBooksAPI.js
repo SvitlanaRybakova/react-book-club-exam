@@ -18,13 +18,18 @@ export const getBooks = async (query) => {
 
     // only free text
     if (!genre.length && searchText) {
-      console.log("only searchText");
       const result = await axios.get(
         `volumes?q=intitle:${searchText}&inauthor:${searchText}&orderBy=newest&maxResults=40&langRestrict=${lang}`
       );
       return result.data;
     }
-
+    // only genre
+    if (genre && searchText.length <= 0) {
+      const result = await axios.get(
+        `volumes?q=subject:${genre}&orderBy=newest&maxResults=40&langRestrict=${lang}`
+      );
+      return result.data;
+    }
   } catch (err) {
     console.log("The new error has been occured", err);
   }

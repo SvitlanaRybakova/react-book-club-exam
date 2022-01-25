@@ -6,12 +6,11 @@ import { useSearchContext } from "../../contexts/SearchContext";
 const SearchInput = () => {
   const {
     searchTerm,
-    setSearchParams,
     setSearchText,
   } = useSearchContext();
 
   const handleClick = (e) => {
-     setSearchText(e.target.value);
+    setSearchText(e.target.value);
   };
 
   return (
@@ -29,10 +28,7 @@ const SearchInput = () => {
           src={cross}
           alt="clear input"
           className={styles.cross}
-          onClick={(e) => {
-            setSearchParams({ text: "" });
-            handleClick(e);
-          }}
+          onClick={() => {setSearchText("")}}
         />
       </div>
     </div>
