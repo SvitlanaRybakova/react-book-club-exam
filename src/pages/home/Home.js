@@ -20,8 +20,6 @@ const Home = () => {
   const genre = getSearchQuery().genre;
   const lang = getSearchQuery().lang;
 
-  console.log(searchText, genre, typeof genre, lang);
-
   const { data, error, isError, isLoading } = useQuery(
     ["home", searchText, genre, lang],
     () => getBooks(getSearchQuery)
@@ -32,8 +30,10 @@ const Home = () => {
       <SearchBar />
       {isError && <CustomErrorMessage error={error} />}
       {isLoading && <Loader />}
-      {/* {getSearchQuery.get("popular") && <BooksList data={dataQuery.data} />} */}
-      {data?.totalItems > 0 && <BooksList data={data.items} />}
+      {getSearchQuery().popular && <BooksList data={dataQuery.data} />}
+      {(data?.totalItems > 0 && !getSearchQuery().popular) && (
+        <BooksList data={data.items} />
+      )}
       {data?.totalItems === 0 && (
         <h3 className="text-center my-5 font-italic text-secondary">
           Sorry, no result

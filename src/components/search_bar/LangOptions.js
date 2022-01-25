@@ -4,11 +4,12 @@ import { useSearchContext } from "../../contexts/SearchContext";
 import styles from "./SearchBar.module.css";
 
 const LangOptions = () => {
-  const { setLangOption } = useSearchContext();
+  const { setLangOption, getSearchQuery } = useSearchContext();
 
   const handleClick = (e) => {
     setLangOption(e.target.value)
   };
+
   return (
     <Col sm={3} className={styles.radioBtn}>
       <div className={styles.radioOption}>
@@ -17,7 +18,7 @@ const LangOptions = () => {
           <input
             type="radio"
             name="language"
-            // checked={getSearchQuery().lang === "en" ? true : false}
+            checked={getSearchQuery().lang === "en" ? true : false}
             value="en"
             onChange={(e) => handleClick(e)}
           />
@@ -29,7 +30,7 @@ const LangOptions = () => {
             type="radio"
             name="language"
             value="sv"
-            // checked={getSearchQuery().lang === "sv" ? true : false}
+            checked={getSearchQuery().lang === "sv" ? true : false}
             onChange={(e) => handleClick(e)}
           />
           <span className={styles.checkmark}></span>

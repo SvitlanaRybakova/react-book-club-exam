@@ -56,7 +56,7 @@ const SearchContextProvider = ({ children }) => {
       searchText: searchParams.get("searchText") || "",
       lang: searchParams.get("lang") || "en",
       popular: searchParams.get("popular") || false,
-      genre: searchParams.get("genre") || "",
+      genre: searchParams.get("genre") || null,
     };
   };
 
@@ -72,10 +72,9 @@ const SearchContextProvider = ({ children }) => {
     setSearchParams(searchQuery);
   };
 
-  const togglePopular = () => {
+  const togglePopular = (value) => {
     const searchQuery = getSearchQuery();
-    searchQuery.popular =
-      searchQuery.popular != null ? !searchQuery.popular : true;
+    searchQuery.popular = value;
     setSearchParams(searchQuery);
   };
 

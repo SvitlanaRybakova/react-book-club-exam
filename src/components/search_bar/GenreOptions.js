@@ -33,7 +33,7 @@ const SuggestionsListComponent = ({
 };
 
 const GenreOptions = () => {
-  const { setGenre } = useSearchContext();
+  const { setGenre, getSearchQuery } = useSearchContext();
   const [input, setInput] = useState("");
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(0);
@@ -74,7 +74,7 @@ const GenreOptions = () => {
           placeholder="Genre"
           onChange={onChange}
           onKeyDown={onKeyDown}
-          value={input}
+          value={getSearchQuery().genre? getSearchQuery().genre : input}
           className={styles.autoCompleteInput}
         />
         <img
