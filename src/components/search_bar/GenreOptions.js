@@ -62,10 +62,7 @@ const GenreOptions = () => {
 
     setGenre(e.target.innerText);
   };
-  // todo implement this function
-  const onKeyDown = (e) => {
-    console.log("press key down", e);
-  };
+  
   return (
     <Col sm={6}>
       <div className={styles.optionsWrapper}>
@@ -73,7 +70,6 @@ const GenreOptions = () => {
           type="text"
           placeholder="Genre"
           onChange={onChange}
-          onKeyDown={onKeyDown}
           value={getSearchQuery().genre? getSearchQuery().genre : input}
           className={styles.autoCompleteInput}
         />

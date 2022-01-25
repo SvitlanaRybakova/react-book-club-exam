@@ -11,7 +11,6 @@ const Edit = () => {
 
   const [error, setError] = useState(null);
   const [message, setMessage] = useState(null);
-  console.log(currentUser);
 
   // hide error
   setTimeout(() => {

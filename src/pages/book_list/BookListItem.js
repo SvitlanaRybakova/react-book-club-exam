@@ -24,7 +24,7 @@ const BookListItem = ({ book, handleShow, show, handleClose }) => {
   };
 
   if (isError) {
-    console.log("The book has not been deleted", error);
+    console.warn("The book has not been deleted", error);
   }
   return (
     <>

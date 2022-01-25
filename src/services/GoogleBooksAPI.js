@@ -31,7 +31,7 @@ export const getBooks = async (query) => {
       return result.data;
     }
   } catch (err) {
-    console.log("The new error has been occured", err);
+    console.warn("The new error has been occured", err);
   }
 };
 
@@ -40,6 +40,6 @@ export const getBook = async (id) => {
     const result = await axios.get(`volumes/${id}`);
     return result;
   } catch (err) {
-    console.log("The new error has been occured", err);
+    console.warn("The new error has been occured", err);
   }
 };

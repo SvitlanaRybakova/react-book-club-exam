@@ -42,7 +42,7 @@ const AddToListBtn = ({ bookInfo, id }) => {
   };
 
   if (isError) {
-    console.log("book hasn't been added", error);
+    console.warn("book hasn't been added", error);
   }
   if (isSuccess) {
     console.log("book has been added");

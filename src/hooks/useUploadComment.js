@@ -89,7 +89,7 @@ const useUploadComment = (bookId) => {
           ],
         });
       } catch (e) {
-        console.log(e.message);
+        console.warn(e.message);
       }
     }
   };
