@@ -25,20 +25,34 @@ const Home = () => {
     () => getBooks(getSearchQuery)
   );
 
+  useEffect(() => {
+    renderBooks();
+  }, [getSearchQuery().popular]);
+
+
+  const renderBooks = () => {
+    if (getSearchQuery().popular === "true") {
+      return <BooksList data={dataQuery.data} />;
+    } else {
+      if (data?.totalItems > 0) {
+        return <BooksList data={data.items} />;
+      } 
+     if (data?.totalItems ===  0) {
+       return (
+         <h3 className="text-center my-5 font-italic text-secondary">
+           Sorry, no result
+         </h3>
+       );
+     }
+    }
+  };
+
   return (
     <PageLayout>
       <SearchBar />
       {isError && <CustomErrorMessage error={error} />}
       {isLoading && <Loader />}
-      {getSearchQuery().popular && <BooksList data={dataQuery.data} />}
-      {(data?.totalItems > 0 && !getSearchQuery().popular) && (
-        <BooksList data={data.items} />
-      )}
-      {data?.totalItems === 0 && (
-        <h3 className="text-center my-5 font-italic text-secondary">
-          Sorry, no result
-        </h3>
-      )}
+      {renderBooks()}
     </PageLayout>
   );
 };

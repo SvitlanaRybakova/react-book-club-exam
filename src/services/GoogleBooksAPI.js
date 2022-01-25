@@ -6,28 +6,25 @@ export const getBooks = async (query) => {
   const searchText = query().searchText;
   const genre = query().genre;
   const lang = query().lang;
-  console.log(searchText);
+
   try {
-    if (genre && searchText) {
+    // genre + free text
+    if (genre.length && searchText) {
       const result = await axios.get(
         `volumes?q=${searchText}+subject:${genre}&orderBy=newest&maxResults=40&langRestrict=${lang}`
       );
       return result.data;
     }
 
-    if (searchText && !genre) {
+    // only free text
+    if (!genre.length && searchText) {
+      console.log("only searchText");
       const result = await axios.get(
         `volumes?q=intitle:${searchText}&inauthor:${searchText}&orderBy=newest&maxResults=40&langRestrict=${lang}`
       );
       return result.data;
     }
 
-    if(genre && !searchText){
-       const result = await axios.get(
-         `volumes?q=subject:${genre}&orderBy=newest&maxResults=40&langRestrict=${lang}`
-       );
-       return result.data;
-    }
   } catch (err) {
     console.log("The new error has been occured", err);
   }
