@@ -16,7 +16,7 @@ const AddToListBtn = ({ bookInfo, id }) => {
   // ckeck if this book has been already added to list
   useEffect(() => {
     if (dataQuery.data) {
-      dataQuery.data.map((book) => {
+      dataQuery.data.forEach((book) => {
         if (book.apiID === id) {
           setAddBook(true);
         }

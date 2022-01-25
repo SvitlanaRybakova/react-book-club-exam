@@ -24,13 +24,13 @@ const useGetCurrentBook = (bookId) => {
 
       //  got an array because of the collection - method (firebase API). Requires iteration to get the values of interest
       if (data) {
-        data.map((book) => setFirebaseBookId(book.id));
-        data.map((book) => {
+        data.forEach((book) => setFirebaseBookId(book.id));
+        data.forEach((book) => {
           setFirebaseBookUsers([...book.users]);
           setFirebaseTotalVoutes(book.totalVoutes);
           setFirebaseRatingSum(book.ratingSum);
           setFirebaseRating(book.rating);
-          book.users.map((user) => {
+          book.users.forEach((user) => {
             setFirebaseUserId(user.user_id);
             setFirebaseUserRate(user.userRate);
           });

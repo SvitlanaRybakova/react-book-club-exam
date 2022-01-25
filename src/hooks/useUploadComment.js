@@ -34,7 +34,7 @@ const useUploadComment = (bookId) => {
     if (firebaseBookId) {
       let savedPrevRating;
       // checks if there is already a rating from this current user (iterates the copy of db array for changing it, cose can't update array of onjects directly in firebase)
-      firebaseBookUsers.map((user) => {
+      firebaseBookUsers.forEach((user) => {
         if (user.user_id === currentUser.uid) {
           // checks the users previous rating
           if (firebaseUserRate !== bookRating) {
