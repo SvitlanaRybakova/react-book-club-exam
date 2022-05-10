@@ -1,7 +1,9 @@
 import React, { useRef, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+
 import { useAuthContext } from "../../contexts/AuthContext";
+import Loader from "../loader/Loader"
 import styles from "./Authorization.module.css";
 
 const Authorization = () => {
@@ -24,12 +26,11 @@ const Authorization = () => {
       // try to login the user with the specified credentials
       try {
         setLoading(true);
-        if (action === "login") {
+        if (action === "login")
           await login(emailRef.current.value, passwordRef.current.value);
-        }
-        if (action === "signup") {
+
+        if (action === "signup")
           await signup(emailRef.current.value, passwordRef.current.value);
-        }
       } catch (e) {
         setError(e.message);
         setLoading(false);
@@ -41,6 +42,14 @@ const Authorization = () => {
 
   return (
     <div className={styles.authWrapper}>
+      {loading && (
+        <div className={styles.overlay}>
+          <Loader
+            loaderContainer={styles.loaderContainer}
+            loaderWrapper={styles.loaderWrapper}
+          />
+        </div>
+      )}
       <div className={styles.container}>
         <h2 className={styles.authTitle}> Authorization</h2>
         <Form>

@@ -3,44 +3,41 @@ import { Form, Button, Row } from "react-bootstrap";
 import { useAuthContext } from "../../contexts/AuthContext";
 import styles from "./Profile.module.css";
 
-const Edit = () => {
+const Edit = ({ navigateToList }) => {
   const displayNameRef = useRef();
   const linkToAvatarRef = useRef();
 
-  const { currentUser, setDisplayName, setLinkUrl } = useAuthContext();
+  const { setDisplayName, setLinkUrl } = useAuthContext();
 
   const [error, setError] = useState(null);
-  const [message, setMessage] = useState(null);
 
   // hide error
   setTimeout(() => {
     setError(null);
-    setMessage(null);
   }, 5000);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
-    setMessage(null);
 
     if (
       displayNameRef.current.value.trim() ||
       linkToAvatarRef.current.value.trim()
     ) {
       try {
-       
-        await setDisplayName(displayNameRef.current.value);
-        await setLinkUrl(linkToAvatarRef.current.value);
+        displayNameRef.current.value.trim() &&
+          (await setDisplayName(displayNameRef.current.value));
+        linkToAvatarRef.current.value.trim() &&
+          (await setLinkUrl(linkToAvatarRef.current.value));
 
-        setMessage("Profile successfully updated");
-       
+        navigateToList((prevState) => !prevState);
       } catch (e) {
         // setError("Error updating profile. Try logging out and in again.");
         setError(e.message);
-   
       }
-    }else{ setError("Please, enter at the one field at least");}
-
+    } else {
+      setError("Please, enter at the one field at least");
+    }
   };
   return (
     <Row>
@@ -61,7 +58,6 @@ const Edit = () => {
 
         <div className={styles.message}>
           {error && <span className="text-danger">{error}</span>}
-          {message && <span className="text-success">{message}</span>}
         </div>
         <Button className={styles.saveBtn} type="submit">
           SAVE

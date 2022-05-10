@@ -36,18 +36,17 @@ const AuthContextProvider = ({ children }) => {
     return sendPasswordResetEmail(auth, email);
   };
 
-  const setDisplayName = (name, urlLink) => {
+  const setDisplayName = (name) => {
     return updateProfile(currentUser, {
       displayName: name,
-      photoURL: urlLink,
     });
   };
 
-   const setLinkUrl = (urlLink) => {
-     return updateProfile(currentUser, {
-       photoURL: urlLink,
-     });
-   };
+  const setLinkUrl = (urlLink) => {
+    return updateProfile(currentUser, {
+      photoURL: urlLink,
+    });
+  };
 
   // add auth-state-observer here
   useEffect(() => {
@@ -71,11 +70,7 @@ const AuthContextProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={values}>
-      {loading && (
-        // <div id="spinner">
-        <Loader />
-        // </div>
-      )}
+      {loading && <Loader />}
       {!loading && children}
     </AuthContext.Provider>
   );

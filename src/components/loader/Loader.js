@@ -1,10 +1,12 @@
 import React from "react";
 import { FadeLoader } from "react-spinners";
 
-const Loader = () => {
+const Loader = ({ loaderWrapper = "text-center my-5", loaderContainer = "" }) => {
   return (
-    <div className="text-center my-5">
-      <FadeLoader color={"orange"} />
+    <div className={loaderWrapper}>
+      <div className={loaderContainer}>
+        <FadeLoader color={"orange"} />
+      </div>
     </div>
   );
 };
