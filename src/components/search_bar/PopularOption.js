@@ -12,7 +12,7 @@ const PopularOption = () => {
   };
 
   useEffect(() => {
-    renderCheckbox()
+    renderCheckbox();
   }, [getSearchQuery().popular]);
 
 

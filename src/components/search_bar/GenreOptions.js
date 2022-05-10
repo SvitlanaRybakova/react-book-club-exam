@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Col } from "react-bootstrap";
 import styles from "./SearchBar.module.css";
 import { suggestions } from "../../services/const";
@@ -54,45 +54,57 @@ const GenreOptions = () => {
     setShowSuggestions(true);
   };
 
-  const onClick = (e) => {
+  const handelClick = (e) => {
+    e.preventDefault();
     setFilteredSuggestions([]);
     setInput(e.target.innerText);
     setActiveSuggestionIndex(0);
     setShowSuggestions(false);
-
     setGenre(e.target.innerText);
   };
-  
-  return (
-    <Col sm={6}>
-      <div className={styles.optionsWrapper}>
-        <input
-          type="text"
-          placeholder="Genre"
-          onChange={onChange}
-          value={getSearchQuery().genre? getSearchQuery().genre : input}
-          className={styles.autoCompleteInput}
-        />
-        <img
-          src={cross}
-          alt="clear input"
-          className={styles.cross}
-          onClick={() => {
-            setInput("");
-            setGenre("");
-          }}
-        />
-      </div>
 
-      {showSuggestions && input && (
-        <SuggestionsListComponent
-          onClick={onClick}
-          suggestion={suggestions}
-          filteredSuggestions={filteredSuggestions}
-          activeSuggestionIndex={activeSuggestionIndex}
-        />
-      )}
-    </Col>
-  );
+  const clearField = () => {
+    setInput("");
+    setGenre("");
+  };
+
+  const renderInput = () => {
+    return (
+      <Col sm={6}>
+        <div className={styles.optionsWrapper}>
+          <input
+            type="text"
+            placeholder="Genre"
+            onChange={onChange}
+            value={getSearchQuery().genre ? getSearchQuery().genre : input}
+            className={styles.autoCompleteInput}
+          />
+          <img
+            role="button"
+            src={cross}
+            alt="clear input"
+            className={styles.cross}
+            onClick={clearField}
+          />
+        </div>
+
+        {showSuggestions && input && (
+          <SuggestionsListComponent
+            onClick={handelClick}
+            suggestion={suggestions}
+            filteredSuggestions={filteredSuggestions}
+            activeSuggestionIndex={activeSuggestionIndex}
+          />
+        )}
+      </Col>
+    );
+  };
+
+  useEffect(() => {
+    renderInput();
+    setInput("");
+  }, [getSearchQuery().popular, getSearchQuery().searchText]);
+
+  return renderInput();
 };
 export default GenreOptions;
