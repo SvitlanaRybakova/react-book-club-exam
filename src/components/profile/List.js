@@ -15,36 +15,41 @@ const List = () => {
   });
 
   return (
-    <>
-            <h2 className={styles.profileTitle}>My List</h2>
-            {isLoading && <Loader />}
-            {isError && <CustomError error={error} />}
-            {data && (
-              <ListGroup as="ol" numbered>
-                {data.slice(0, 3).map((book) => (
-                  <ListGroup.Item
-                    key={uuidv4()}
-                    as="li"
-                    className="d-flex justify-content-between align-items-start"
-                  >
-                    <div className={`ms-2 me-auto ${styles.bookDescription}`}>
-                      <div className="fw-bold">{book.title}</div>
-                      {book.author}
-                    </div>
-                  </ListGroup.Item>
-                ))}
-              </ListGroup>
-            )}
-            {data?.length <= 0 && (
-              <Alert variant="light"> You do not have books</Alert>
-            )}
-            <Button
-              className={styles.saveBtn}
-              onClick={() => navigate("/book-list")}
+    <div className={styles.wrapper}>
+      <h2 className={styles.profileTitle}>My List</h2>
+      {isLoading && (
+        <div className="overlay">
+          <Loader
+            loaderContainer={"loaderContainer"}
+            loaderWrapper={"loaderWrapper"}
+          />
+        </div>
+      )}
+
+      {isError && <CustomError error={error} />}
+      {data && (
+        <ListGroup as="ol" numbered>
+          {data.slice(0, 3).map((book) => (
+            <ListGroup.Item
+              key={uuidv4()}
+              as="li"
+              className="d-flex justify-content-between align-items-start"
             >
-              Go to all list
-            </Button>
-    </>
+              <div className={`ms-2 me-auto ${styles.bookDescription}`}>
+                <div className="fw-bold">{book.title}</div>
+                {book.author}
+              </div>
+            </ListGroup.Item>
+          ))}
+        </ListGroup>
+      )}
+      {data?.length <= 0 && (
+        <Alert variant="light"> You do not have books</Alert>
+      )}
+      <Button className={styles.saveBtn} onClick={() => navigate("/book-list")}>
+        Go to all list
+      </Button>
+    </div>
   );
 };
 

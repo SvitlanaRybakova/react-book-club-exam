@@ -43,10 +43,10 @@ const Authorization = () => {
   return (
     <div className={styles.authWrapper}>
       {loading && (
-        <div className={styles.overlay}>
+        <div className="overlay">
           <Loader
-            loaderContainer={styles.loaderContainer}
-            loaderWrapper={styles.loaderWrapper}
+            loaderContainer={"loaderContainer"}
+            loaderWrapper={"loaderWrapper"}
           />
         </div>
       )}

@@ -20,7 +20,7 @@ const Profile = () => {
     navigate("/");
   };
   return (
-    <div className={styles.profileWrapper}style={{border: "1px solid red"}}>
+    <div className={styles.profileWrapper}>
       <div className={styles.container}>
         <Row className="justify-content-between">
           <Col className="d-flex align-items-center">

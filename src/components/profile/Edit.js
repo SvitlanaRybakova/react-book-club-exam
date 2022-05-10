@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 import { Form, Button, Row } from "react-bootstrap";
+
 import { useAuthContext } from "../../contexts/AuthContext";
+import Loader from "../../components/loader/Loader";
 import styles from "./Profile.module.css";
 
 const Edit = ({ navigateToList }) => {
@@ -9,6 +11,7 @@ const Edit = ({ navigateToList }) => {
 
   const { setDisplayName, setLinkUrl } = useAuthContext();
 
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   // hide error
@@ -25,6 +28,7 @@ const Edit = ({ navigateToList }) => {
       linkToAvatarRef.current.value.trim()
     ) {
       try {
+        setLoading(true);
         displayNameRef.current.value.trim() &&
           (await setDisplayName(displayNameRef.current.value));
         linkToAvatarRef.current.value.trim() &&
@@ -34,13 +38,22 @@ const Edit = ({ navigateToList }) => {
       } catch (e) {
         // setError("Error updating profile. Try logging out and in again.");
         setError(e.message);
+        setLoading(false);
       }
     } else {
       setError("Please, enter at the one field at least");
     }
   };
   return (
-    <Row>
+    <Row className="position-relative">
+      {loading && (
+        <div className="overlay">
+          <Loader
+            loaderContainer={"loaderContainer"}
+            loaderWrapper={"loaderWrapper"}
+          />
+        </div>
+      )}
       <h2 className={styles.profileTitle}>EDIT</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Control

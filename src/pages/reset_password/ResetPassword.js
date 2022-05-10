@@ -1,11 +1,14 @@
 import React, { useRef, useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+
 import { useAuthContext } from "../../contexts/AuthContext";
+import Loader from "../../components/loader/Loader";
 import styles from "./ResetPassword.module.css";
 
 const ResetPassword = () => {
   const emailRef = useRef();
+  
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -33,8 +36,17 @@ const ResetPassword = () => {
   return (
     <>
       <div className={styles.wrapper}>
+        {loading && (
+          <div className="overlay">
+            <Loader
+              loaderContainer={"loaderContainer"}
+              loaderWrapper={"loaderWrapper"}
+            />
+          </div>
+        )}
+
         <div className={styles.container}>
-          <h2 className={styles.title}> Reset Password</h2>
+          <h2 className={styles.title}> </h2>
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email" className="mb-3">
               <Form.Control

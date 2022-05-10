@@ -5,6 +5,10 @@
   min-height: 100vh;
 }
 
+.wrapper {
+  position: relative;
+}
+
 .container {
   margin: 0 auto;
   max-width: 300px;
