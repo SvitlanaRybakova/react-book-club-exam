@@ -147,7 +147,7 @@
   padding: 0.5rem;
 }
 
-.suggestion-active, .suggestions li:hover {
+.suggestionActive, .suggestions li:hover {
   background-color: var(--bg);
   color: var(--orange);
   cursor: pointer;

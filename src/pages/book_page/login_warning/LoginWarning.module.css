@@ -1,6 +1,6 @@
 .container {
   padding: 20px 12px;
-  margin: 20px 12px;
+  margin: 20px 0px;
   background-color: var(--white);
   color: var(--orange)
 }

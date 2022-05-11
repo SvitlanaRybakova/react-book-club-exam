@@ -17,10 +17,24 @@ const CommentsList = ({bookId}) => {
   
   return (
     <Row className={styles.commentWrapper}>
-      {isLoading && <Loader />}
+      {isLoading && (
+        <div className="overlay">
+          <Loader
+            loaderContainer={"loaderContainer"}
+            loaderWrapper={"loaderWrapper"}
+          />
+        </div>
+      )}
+
       {isError && <CustomErrorMessage error={error} />}
-      {data && data.map(comment => <CommentItem comment={comment} key={uuidv4()}/>)}
-      {data?.length === 0 && <span> <em>No comments yet</em> </span>}
+      {data &&
+        data.map((comment) => <CommentItem comment={comment} key={uuidv4()} />)}
+      {data?.length === 0 && (
+        <span>
+          {" "}
+          <em>No comments yet</em>{" "}
+        </span>
+      )}
     </Row>
   );
 };

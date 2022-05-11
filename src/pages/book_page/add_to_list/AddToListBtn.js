@@ -22,7 +22,7 @@ const AddToListBtn = ({ bookInfo, id }) => {
         }
       });
     }
-  }, [dataQuery.data]);
+  }, [dataQuery.data, id]);
 
   const [book] = useState({
     title: bookInfo.title,

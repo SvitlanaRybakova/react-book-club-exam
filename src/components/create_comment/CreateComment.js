@@ -4,7 +4,6 @@ import { Button } from "react-bootstrap";
 import useUploadComment from "../../hooks/useUploadComment";
 import RatingIcon from "./Rating_icons/RatingIcon";
 import CustomErrorMessage from "../error_msg/CustomErrorMessage";
-import Loader from "react-spinners/BarLoader";
 import styles from "./CreateComment.module.css";
 
 const CreateComment = ({ bookId, image, title }) => {
@@ -64,7 +63,7 @@ const CreateComment = ({ bookId, image, title }) => {
         </Button>
       </div>
       {isError && <CustomErrorMessage error={error} />}
-      {isMutating && <Loader />}
+      {isMutating && <div className="overlay"></div>}
     </div>
   );
 };

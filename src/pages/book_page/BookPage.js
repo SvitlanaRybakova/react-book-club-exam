@@ -37,7 +37,11 @@ const BookPage = () => {
                 <CreateComment
                   bookId={id}
                   title={data?.data.volumeInfo.title}
-                  image={data.data.volumeInfo.imageLinks?.smallThumbnail?data.data.volumeInfo.imageLinks.smallThumbnail: null}
+                  image={
+                    data.data.volumeInfo.imageLinks?.smallThumbnail
+                      ? data.data.volumeInfo.imageLinks.smallThumbnail
+                      : null
+                  }
                 />
               ) : (
                 <LoginWarning message={"Please log in to write a comment"} />

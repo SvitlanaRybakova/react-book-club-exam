@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext} from "react";
 import { useSearchParams } from "react-router-dom";
 
 export const SearchContext = createContext();

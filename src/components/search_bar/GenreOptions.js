@@ -12,14 +12,9 @@ const SuggestionsListComponent = ({
 }) => {
   return filteredSuggestions.length ? (
     <ul className={styles.suggestions}>
-      {filteredSuggestions.map((suggestion, index) => {
-        let className;
-        // Flag the active suggestion with a class
-        if (index === activeSuggestionIndex) {
-          className = "suggestion-active";
-        }
+      {filteredSuggestions.map((suggestion) => {
         return (
-          <li className={styles.className} key={suggestion} onClick={onClick}>
+          <li key={suggestion} onClick={onClick}>
             {suggestion}
           </li>
         );
@@ -38,6 +33,9 @@ const GenreOptions = () => {
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(0);
   const [showSuggestions, setShowSuggestions] = useState(false);
+
+  const isPopular = getSearchQuery().popular;
+  const isSearchText = getSearchQuery().searchText;
 
   const onChange = (e) => {
     const userInput = e.target.value;
@@ -103,7 +101,7 @@ const GenreOptions = () => {
   useEffect(() => {
     renderInput();
     setInput("");
-  }, [getSearchQuery().popular, getSearchQuery().searchText]);
+  }, [isPopular, isSearchText]);
 
   return renderInput();
 };

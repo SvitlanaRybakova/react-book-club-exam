@@ -23,9 +23,8 @@ const BookListItem = ({ book, handleShow, show, handleClose }) => {
     handleShow();
   };
 
-  if (isError) {
-    console.warn("The book has not been deleted", error);
-  }
+  if (isError) console.warn("The book has not been deleted", error);
+  
   return (
     <>
       <Row className="align-items-center my-3">

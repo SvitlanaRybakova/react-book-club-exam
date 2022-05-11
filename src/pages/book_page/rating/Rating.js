@@ -9,7 +9,7 @@ const Rating = ({ bookId }) => {
     firebaseTotalVoutes,
     firebaseRatingSum,
   } = useGetCurrentBook(bookId);
-  
+  console.log("RATING", firebaseRating);
   return (
     <div className={styles.rating}>
       <div className={styles.ratingCounter}>

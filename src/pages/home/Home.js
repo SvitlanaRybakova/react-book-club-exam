@@ -19,6 +19,7 @@ const Home = () => {
   const searchText = getSearchQuery().searchText;
   const genre = getSearchQuery().genre;
   const lang = getSearchQuery().lang;
+  const isPopular = getSearchQuery().popular;
 
   const { data, error, isError, isLoading } = useQuery(
     ["home", searchText, genre, lang],
@@ -27,7 +28,7 @@ const Home = () => {
 
   useEffect(() => {
     renderBooks();
-  }, [getSearchQuery().popular]);
+  }, [isPopular]);
 
 
   const renderBooks = () => {

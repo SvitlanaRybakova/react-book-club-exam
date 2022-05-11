@@ -10,6 +10,7 @@ const useGetCurrentBook = (bookId) => {
   const [firebaseTotalVoutes, setFirebaseTotalVoutes] = useState(null);
   const [firebaseRatingSum, setFirebaseRatingSum] = useState(null);
   const [firebaseRating, setFirebaseRating] = useState(null);
+  
   useEffect(() => {
     const ref = collection(db, "rating");
 
@@ -24,6 +25,7 @@ const useGetCurrentBook = (bookId) => {
 
       //  got an array because of the collection - method (firebase API). Requires iteration to get the values of interest
       if (data) {
+        console.log("DATA", data);
         data.forEach((book) => setFirebaseBookId(book.id));
         data.forEach((book) => {
           setFirebaseBookUsers([...book.users]);
@@ -49,6 +51,7 @@ const useGetCurrentBook = (bookId) => {
     firebaseTotalVoutes,
     firebaseRatingSum,
     firebaseRating,
+
   };
 };
 
