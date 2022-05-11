@@ -16,56 +16,47 @@ const useUploadComment = (bookId) => {
   const [isError, setIsError] = useState(null);
   const [isMutating, setIsMutating] = useState(null);
   const [isSuccess, setIsSuccess] = useState(null);
-  const {
-    firebaseBookId,
-    firebaseUserId,
-    firebaseUserRate,
-    firebaseBookUsers,
-    firebaseTotalVoutes,
-    firebaseRatingSum,
-  } = useGetCurrentBook(bookId);
- 
   const { currentUser } = useAuthContext();
+  const { firebaseUserId, data } = useGetCurrentBook(bookId);
 
-  
-
+  let savedPrevRating = 0;
   const setRating = async (bookRating, bookId, image, title) => {
-    // ***  book exists in db ***
-    if (firebaseBookId) {
-      let savedPrevRating;
+
+    // ***  book exists in db  ***
+    if (data?.bookId) {
+
       // checks if there is already a rating from this current user (iterates the copy of db array for changing it, cose can't update array of onjects directly in firebase)
-      firebaseBookUsers.forEach((user) => {
+      data.users.forEach((user) => {
+          // check review from current user
         if (user.user_id === currentUser.uid) {
           // checks the users previous rating
-          if (firebaseUserRate !== bookRating) {
+          if (data.userRate !== bookRating) {
             // saves the previous rating so that it can be taken away before adding a new one
-            savedPrevRating = firebaseUserRate;
+            savedPrevRating = user.userRate;
             // changes the userRate property
             user.userRate = bookRating;
+           
           }
         }
       });
-
       // updates users array and others fields in firebase
-      const bookDocRef = doc(db, "rating", firebaseBookId);
-
+      const bookDocRef = doc(db, "rating", data.id);
+  
       updateDoc(bookDocRef, {
-        users: [...firebaseBookUsers],
-        ratingSum: firebaseRatingSum - savedPrevRating + bookRating,
+        users: [...data.users],
+        ratingSum: data.ratingSum - savedPrevRating + bookRating,
         rating:
-          (firebaseRatingSum - savedPrevRating + bookRating) /
-          firebaseTotalVoutes,
+          (data.ratingSum - savedPrevRating + bookRating) / data.totalVoutes,
       });
 
       // ***  book exists, but no review of current user ***
       if (firebaseUserId !== currentUser.uid) {
-        const bookDocRef = doc(db, "rating", firebaseBookId);
+        const bookDocRef = doc(db, "rating", data.id);
         updateDoc(bookDocRef, {
           users: arrayUnion({ user_id: currentUser.uid, userRate: bookRating }),
-          totalVoutes: firebaseTotalVoutes + 1,
-          ratingSum: firebaseRatingSum + bookRating,
-          rating:
-            (firebaseRatingSum + bookRating) / (firebaseTotalVoutes + 1),
+          totalVoutes: data.totalVoutes + 1,
+          ratingSum: data.ratingSum + bookRating,
+          rating: (data.ratingSum + bookRating) / (data.totalVoutes + 1),
         });
       }
 
@@ -126,6 +117,7 @@ const useUploadComment = (bookId) => {
       setIsSuccess(false);
     }
   };
+
   return { error, isError, isMutating, isSuccess, mutate };
 };
 

@@ -10,25 +10,26 @@ const useGetCurrentBook = (bookId) => {
   const [firebaseTotalVoutes, setFirebaseTotalVoutes] = useState(null);
   const [firebaseRatingSum, setFirebaseRatingSum] = useState(null);
   const [firebaseRating, setFirebaseRating] = useState(null);
-  
-  useEffect(() => {
+  const [data, setData] = useState(null);
+
+  const getCurrentBook = async () => {
     const ref = collection(db, "rating");
 
     const q = query(ref, where("bookId", "==", bookId));
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const data = snapshot.docs.map((doc) => {
+  const unsubscribe = onSnapshot(q, (snapshot) => {
+       const data = snapshot.docs.map((doc) => {
         return {
           id: doc.id,
           ...doc.data(),
         };
       });
-
+      data && setData(data[0]);
+      
       //  got an array because of the collection - method (firebase API). Requires iteration to get the values of interest
       if (data) {
-        console.log("DATA", data);
         data.forEach((book) => setFirebaseBookId(book.id));
         data.forEach((book) => {
-          setFirebaseBookUsers([...book.users]);
+          // setFirebaseBookUsers([...book.users]);
           setFirebaseTotalVoutes(book.totalVoutes);
           setFirebaseRatingSum(book.ratingSum);
           setFirebaseRating(book.rating);
@@ -39,8 +40,11 @@ const useGetCurrentBook = (bookId) => {
         });
       }
     });
-
     return unsubscribe;
+  };
+
+  useEffect(() => {
+    getCurrentBook();
   }, [bookId]);
 
   return {
@@ -51,7 +55,8 @@ const useGetCurrentBook = (bookId) => {
     firebaseTotalVoutes,
     firebaseRatingSum,
     firebaseRating,
-
+    data,
+    getCurrentBook,
   };
 };
 
