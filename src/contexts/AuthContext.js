@@ -51,10 +51,11 @@ const AuthContextProvider = ({ children }) => {
   // add auth-state-observer here
   useEffect(() => {
     // listen for auth-state changes
-    onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user);
-      setLoading(false);
-    });
+     const unsubscribe =  onAuthStateChanged(auth, (user) => {
+        setCurrentUser(user);
+        setLoading(false);
+      });
+    return (() => {unsubscribe()})
   }, []);
 
   const values = {

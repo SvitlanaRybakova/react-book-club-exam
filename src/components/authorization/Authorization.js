@@ -56,6 +56,7 @@ const Authorization = () => {
           <Form.Control
             type="email"
             placeholder="Email"
+            autoComplete="username"
             className={styles.authInput}
             ref={emailRef}
             required
@@ -63,6 +64,7 @@ const Authorization = () => {
           <Form.Control
             type="password"
             placeholder="Password"
+            autoComplete="current-password"
             className={styles.authInput}
             ref={passwordRef}
             required

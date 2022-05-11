@@ -17,41 +17,41 @@ const useUploadComment = (bookId) => {
   const [isMutating, setIsMutating] = useState(null);
   const [isSuccess, setIsSuccess] = useState(null);
   const { currentUser } = useAuthContext();
-  const { firebaseUserId, data } = useGetCurrentBook(bookId);
+  const { data } = useGetCurrentBook(bookId);
 
   let savedPrevRating = 0;
   const setRating = async (bookRating, bookId, image, title) => {
-
     // ***  book exists in db  ***
     if (data?.bookId) {
-
-      // checks if there is already a rating from this current user (iterates the copy of db array for changing it, cose can't update array of onjects directly in firebase)
-      data.users.forEach((user) => {
-          // check review from current user
-        if (user.user_id === currentUser.uid) {
-          // checks the users previous rating
-          if (data.userRate !== bookRating) {
-            // saves the previous rating so that it can be taken away before adding a new one
-            savedPrevRating = user.userRate;
-            // changes the userRate property
-            user.userRate = bookRating;
-           
-          }
-        }
-      });
-      // updates users array and others fields in firebase
+      // ref to firebase collection
       const bookDocRef = doc(db, "rating", data.id);
-  
-      updateDoc(bookDocRef, {
-        users: [...data.users],
-        ratingSum: data.ratingSum - savedPrevRating + bookRating,
-        rating:
-          (data.ratingSum - savedPrevRating + bookRating) / data.totalVoutes,
-      });
 
-      // ***  book exists, but no review of current user ***
-      if (firebaseUserId !== currentUser.uid) {
-        const bookDocRef = doc(db, "rating", data.id);
+      // try to find current user in book users collection
+      const foundUser = data.users.filter(
+        (user) => user.user_id === currentUser.uid
+      )[0];
+
+      // *** user did the review ***
+      if (foundUser) {
+        // checks the users previous rating
+        if (foundUser.userRate !== bookRating) {
+          // saves the previous rating so that it can be taken away before adding a new one
+          savedPrevRating = foundUser.userRate;
+          // changes the userRate property
+          foundUser.userRate = bookRating;
+        }
+
+        // updates users array and others fields in firebase
+        updateDoc(bookDocRef, {
+          users: [...data.users],
+          ratingSum: data.ratingSum - savedPrevRating + bookRating,
+          rating:
+            (data.ratingSum - savedPrevRating + bookRating) / data.totalVoutes,
+        });
+      }
+
+      // ***  no review of current user ***
+      if (!foundUser) {
         updateDoc(bookDocRef, {
           users: arrayUnion({ user_id: currentUser.uid, userRate: bookRating }),
           totalVoutes: data.totalVoutes + 1,
