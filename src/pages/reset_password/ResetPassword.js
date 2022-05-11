@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { useAuthContext } from "../../contexts/AuthContext";
 import Loader from "../../components/loader/Loader";
@@ -8,24 +8,27 @@ import styles from "./ResetPassword.module.css";
 
 const ResetPassword = () => {
   const emailRef = useRef();
-  
+
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const { resetPassword } = useAuthContext();
-  const navigate = useNavigate();
   // hide error
   setTimeout(() => {
     setError(null);
+    setSuccess(false);
   }, 5000);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
+    setSuccess(false);
+    setLoading(true);
     try {
-      setLoading(true);
       await resetPassword(emailRef.current.value);
-      navigate("/");
+     setSuccess(true);
+     setLoading(false);
     } catch (e) {
       setError(e.message);
       setLoading(false);
@@ -58,6 +61,11 @@ const ResetPassword = () => {
               />
             </Form.Group>
             {error && <Alert variant="danger">{error}</Alert>}
+            {success && (
+              <Alert variant="success">
+                {"The restore link has been sending. Check your email"}
+              </Alert>
+            )}
             <Button
               disabled={loading}
               type="submit"

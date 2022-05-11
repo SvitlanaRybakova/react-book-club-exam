@@ -3,6 +3,7 @@
   background-color: var(--white);
   padding: 30px 20px;
   text-align: center;
+  min-height: 100vh;
 }
 
 .container {
@@ -56,4 +57,3 @@
 .error {
   height: 20px;
 }
-

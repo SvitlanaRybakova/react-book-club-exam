@@ -10,6 +10,7 @@ import BookPage from "./pages/book_page/BookPage";
 import BookList from "./pages/book_list/BookList";
 import ResetPassword from "./pages/reset_password/ResetPassword";
 import PageNotFound from "./pages/PageNotFound";
+console.warn = console.error= () => {};
 
 function App() {
   return (
